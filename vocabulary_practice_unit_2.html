@@ -1,0 +1,2599 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Practice — الاختبار الإلكتروني التفاعلي (Unit 2)</title>
+    <!-- تحميل مكتبة Tailwind CSS للتصميم العصري المتجاوب -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- تحميل الخطوط العربية والإنجليزية الواضحة -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f9f7f1;
+            background-image:
+                radial-gradient(at 10% 8%, rgba(132, 204, 22, 0.22) 0px, transparent 48%),
+                radial-gradient(at 90% 12%, rgba(251, 191, 36, 0.28) 0px, transparent 48%),
+                radial-gradient(at 84% 86%, rgba(234, 88, 12, 0.16) 0px, transparent 50%),
+                radial-gradient(at 14% 84%, rgba(20, 184, 166, 0.18) 0px, transparent 50%),
+                url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236e8042' fill-opacity='0.055'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        .en-text {
+            font-family: 'Fredoka', 'Inter', sans-serif;
+            direction: ltr;
+            unicode-bidi: isolate;
+        }
+        /* حركات وتأثيرات تفاعلية ناعمة */
+        @keyframes pulse-ring {
+            0% { transform: scale(0.85); opacity: 0.85; }
+            50% { transform: scale(1.18); opacity: 0.25; }
+            100% { transform: scale(0.85); opacity: 0.85; }
+        }
+        .speaking-ring {
+            animation: pulse-ring 1.5s infinite ease-in-out;
+        }
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
+        .animate-float {
+            animation: float-gentle 3.8s ease-in-out infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-6px); }
+            40% { transform: translateX(6px); }
+            60% { transform: translateX(-4px); }
+            80% { transform: translateX(4px); }
+        }
+        .shake {
+            animation: shake 0.45s ease-in-out;
+        }
+        @keyframes pop-in {
+            0% { transform: scale(0.93); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-pop {
+            animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+        .confetti-piece {
+            position: fixed;
+            top: -15px;
+            z-index: 90;
+            pointer-events: none;
+            animation: confetti-fall linear forwards;
+        }
+        .audio-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        .audio-btn:hover {
+            transform: scale(1.05);
+        }
+        .audio-btn:active {
+            transform: scale(0.95);
+        }
+        .clickable-phrase {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .clickable-phrase:hover {
+            transform: translateY(-1px);
+        }
+        /* تظليل البطاقة أو السطر النشط أثناء قراءة المعلمة */
+        .active-reading-box {
+            background-color: #fef9c3 !important;
+            border-color: #f59e0b !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.36), 0 12px 24px -4px rgba(245, 158, 11, 0.22) !important;
+            transform: scale(1.01);
+            transition: all 0.25s ease;
+            position: relative;
+            z-index: 10;
+        }
+        .active-reading-text {
+            background: linear-gradient(120deg, #fde047 0%, #fef08a 100%);
+            padding: 2px 8px;
+            border-radius: 8px;
+            color: #78350f !important;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            transition: all 0.25s ease;
+        }
+        /* الهوية البصرية الزيتونية واللوح الخشبي المطابقة لأوراق العمل */
+        .wood-banner {
+            background: linear-gradient(180deg, #fde08d 0%, #f6c453 48%, #e5a93c 100%);
+            border: 3px solid #78350f;
+            box-shadow: 0 5px 0 #78350f, inset 0 2px 0 rgba(255, 255, 255, 0.65);
+        }
+        .olive-ribbon {
+            background: linear-gradient(135deg, #657b37 0%, #7c9347 55%, #5b7030 100%);
+            box-shadow: 0 10px 25px -8px rgba(91, 112, 48, 0.45);
+        }
+        .terracotta-ribbon {
+            background: linear-gradient(135deg, #b85324 0%, #cf622d 55%, #9a3f17 100%);
+            box-shadow: 0 8px 20px -6px rgba(184, 83, 36, 0.42);
+        }
+        .glass-section {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 18px 42px -15px rgba(91, 112, 48, 0.16);
+        }
+        .progress-striped {
+            background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.22) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0.22) 75%, transparent 75%, transparent);
+            background-size: 1.25rem 1.25rem;
+        }
+
+        /* ========================================== */
+        /* تنسيقات السحب والإفلات (Drag & Drop) للسؤال الثاني */
+        /* ========================================== */
+        .drag-chip {
+            cursor: grab;
+            user-select: none;
+            touch-action: manipulation;
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .drag-chip:hover:not(.drag-chip-used) {
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 16px -4px rgba(180, 83, 9, 0.28);
+        }
+        .drag-chip:active:not(.drag-chip-used) {
+            cursor: grabbing;
+            transform: scale(0.96);
+        }
+        .drag-chip-selected {
+            background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%) !important;
+            color: #ffffff !important;
+            border-color: #9a3412 !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.35) !important;
+            transform: scale(1.07);
+        }
+        .drag-chip-used {
+            opacity: 0.32;
+            cursor: not-allowed;
+            filter: grayscale(0.45);
+            transform: scale(0.94);
+        }
+        .drop-zone {
+            min-width: 122px;
+            min-height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 2.5px dashed #b45309;
+            background-color: #ffffff;
+            border-radius: 14px;
+            padding: 3px 12px;
+            vertical-align: middle;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .drop-zone:hover {
+            background-color: #fef3c7;
+            border-color: #ea580c;
+        }
+        .drop-zone-over {
+            background-color: #fde68a !important;
+            border-style: solid !important;
+            border-color: #ea580c !important;
+            transform: scale(1.06);
+            box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.25);
+        }
+        .drop-zone-filled {
+            border-style: solid;
+            border-color: #657b37;
+            background-color: #ecfccb;
+            color: #365314;
+            font-weight: 900;
+            box-shadow: 0 3px 10px -2px rgba(101, 123, 55, 0.25);
+        }
+        .drop-zone-correct {
+            border-style: solid !important;
+            border-color: #059669 !important;
+            background-color: #d1fae5 !important;
+            color: #065f46 !important;
+        }
+        .drop-zone-wrong {
+            border-style: solid !important;
+            border-color: #e11d48 !important;
+            background-color: #ffe4e6 !important;
+            color: #9f1239 !important;
+        }
+
+        /* ========================================== */
+        /* تنسيقات الكلمة المختلفة (Odd One Out) للسؤال الثالث */
+        /* ========================================== */
+        .odd-word-pill {
+            transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .odd-word-selected {
+            border: 3px solid #d97706 !important;
+            background: #fef3c7 !important;
+            color: #92400e !important;
+            box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.22);
+            transform: scale(1.06);
+        }
+        .odd-word-correct {
+            border: 3px solid #059669 !important;
+            background: #d1fae5 !important;
+            color: #065f46 !important;
+            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.25);
+        }
+        .odd-word-wrong {
+            border: 3px solid #e11d48 !important;
+            background: #ffe4e6 !important;
+            color: #9f1239 !important;
+            box-shadow: 0 0 0 4px rgba(225, 29, 72, 0.22);
+        }
+
+        /* بلاطات الحروف التفاعلية للسؤال الرابع */
+        .letter-tile {
+            transition: all 0.16s ease;
+            user-select: none;
+        }
+        .letter-tile:hover:not(:disabled) {
+            transform: translateY(-2px);
+        }
+        .letter-tile:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+        .letter-tile-used {
+            opacity: 0.3;
+            transform: scale(0.9);
+        }
+        .quiz-art-frame svg {
+            transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .quiz-card-enhanced:hover .quiz-art-frame svg {
+            transform: scale(1.06);
+        }
+
+        /* تنسيق الطباعة لتقرير الطالب النهائي */
+        @media print {
+            header, .no-print, #liveReadingToast, #toast-message {
+                display: none !important;
+            }
+            body {
+                background: #ffffff !important;
+            }
+            #final-report-card {
+                display: block !important;
+                box-shadow: none !important;
+                border: 2px solid #059669 !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen text-slate-800 pb-24">
+
+    <!-- ========================================== -->
+    <!-- الشريط العلوي الثابت: العنوان + نسبة الإنجاز المباشرة + الصوت الهادئ -->
+    <!-- ========================================== -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-lime-200/80">
+        <div class="max-w-5xl mx-auto px-4 py-2.5 space-y-2">
+            <div class="flex flex-wrap items-center justify-between gap-2.5">
+                <!-- شارة الاختبار -->
+                <div class="flex items-center gap-2.5">
+                    <button type="button" onclick="speakText('Vocabulary Practice. Unit 2 Life styles. Interactive Quiz with four exercises.')" class="audio-btn olive-ribbon text-white px-4 sm:px-5 py-1.5 rounded-full font-bold text-sm sm:text-base flex items-center gap-2" title="اضغط لسماع العنوان">
+                        <i class="fa-solid fa-lightbulb text-amber-200"></i>
+                        <span class="en-text">Vocabulary Practice</span>
+                    </button>
+                    <span class="hidden sm:inline-flex items-center gap-1.5 text-xs font-extrabold text-lime-950 bg-lime-100 border border-lime-300 px-3 py-1 rounded-full">
+                        <i class="fa-solid fa-chart-line text-lime-700"></i>
+                        نسبة الإنجاز: <span id="header-progress-pct" class="en-text text-sm text-orange-700">0%</span>
+                    </span>
+                </div>
+
+                <!-- مؤشر المعلمة الصوتية (نفس نظام الصوت التعليمي الهادئ) -->
+                <div id="teacher-status-box" class="flex flex-wrap items-center gap-2 bg-teal-50 border border-teal-200 px-3 py-1.5 rounded-full shadow-inner">
+                    <div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-teal-600 text-white shrink-0">
+                        <span id="teacher-pulse" class="hidden absolute inset-0 rounded-full bg-teal-400 speaking-ring"></span>
+                        <i class="fa-solid fa-chalkboard-user relative z-10 text-xs"></i>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-1.5 text-[11px] text-teal-700">
+                        <span class="hidden sm:inline">الصوت:</span>
+                        <select id="teacher-voice-select" onchange="changeTeacherVoice(this.value)" class="bg-white/90 border border-teal-300 rounded-lg px-2 py-0.5 text-[11px] font-bold text-teal-900 focus:outline-none cursor-pointer">
+                            <option value="calm-female" selected>معلمة هادئة (0.76x)</option>
+                            <option value="calm-male">معلم هادئ (0.76x)</option>
+                        </select>
+                        <button type="button" onclick="toggleSpeechSpeed()" id="speed-toggle-btn" class="bg-white/90 hover:bg-teal-100 border border-teal-300 rounded-lg px-2 py-0.5 text-[11px] font-bold text-teal-900 transition cursor-pointer" title="تبديل سرعة النطق للتدريب">
+                            <i class="fa-solid fa-gauge-high text-teal-600"></i> <span id="speed-label">هادئ (0.76x)</span>
+                        </button>
+                    </div>
+                    <button type="button" onclick="stopAudio()" id="stop-audio-btn" class="hidden bg-rose-100 hover:bg-rose-200 text-rose-700 px-2.5 py-0.5 rounded-full text-xs font-bold transition">
+                        <i class="fa-solid fa-stop"></i> إيقاف
+                    </button>
+                </div>
+            </div>
+
+            <!-- شريط نسبة الإنجاز المباشر (29 فقرة) -->
+            <div class="flex items-center gap-3">
+                <span class="text-[11px] sm:text-xs font-extrabold text-slate-600 shrink-0">
+                    نسبة الإنجاز (<span id="progress-count-text" class="en-text text-orange-700">0 / 29</span>)
+                </span>
+                <div class="flex-1 h-3 bg-slate-200/90 rounded-full overflow-hidden shadow-inner border border-slate-300/60">
+                    <div id="top-progress-bar" class="h-full w-0 bg-gradient-to-r from-amber-500 via-orange-500 to-emerald-500 progress-striped rounded-full transition-all duration-500 ease-out"></div>
+                </div>
+                <span id="top-progress-pct-label" class="en-text text-xs font-black text-emerald-700 w-10 text-left">0%</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- مؤشر القراءة الحي (Live Reading Toast) -->
+    <div id="liveReadingToast" class="fixed bottom-16 left-1/2 -translate-x-1/2 z-50 bg-slate-900/95 backdrop-blur-md text-white px-5 py-2.5 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 transition-all duration-300 opacity-0 pointer-events-none translate-y-8 max-w-[94vw]">
+        <div class="w-3 h-3 rounded-full bg-emerald-400 animate-ping flex-shrink-0"></div>
+        <div class="truncate" dir="ltr">
+            <span id="toastRateLabel" class="text-[11px] text-slate-400 block font-sans">Calm Educational Voice (0.76x):</span>
+            <span id="toastWord" class="en-text font-black text-amber-300 text-base sm:text-lg tracking-wide">...</span>
+        </div>
+    </div>
+
+    <!-- صندوق الإشعارات اللطيف -->
+    <div id="toast-message" class="fixed bottom-5 left-1/2 transform -translate-x-1/2 z-50 hidden bg-slate-800 text-white px-6 py-3 rounded-2xl shadow-xl font-bold text-sm flex items-center gap-2 transition-all">
+        <i class="fa-solid fa-sparkles text-yellow-400"></i>
+        <span id="toast-text">أحسنت!</span>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- المحتوى الرئيسي للاختبار الإلكتروني -->
+    <!-- ========================================== -->
+    <main class="max-w-5xl mx-auto px-4 pt-6 space-y-9">
+
+        <!-- ========================================== -->
+        <!-- البانر الافتتاحي وبيانات الطالب -->
+        <!-- ========================================== -->
+        <section class="no-print relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#5d7231] via-[#748c40] to-[#b24f22] text-white shadow-2xl border-2 border-amber-300/70 p-6 sm:p-7">
+            <div class="pointer-events-none absolute -top-16 -left-16 w-60 h-60 rounded-full bg-amber-300/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -bottom-20 -right-12 w-64 h-64 rounded-full bg-lime-300/20 blur-3xl"></div>
+
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div class="space-y-3.5 flex-1">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <span class="terracotta-ribbon border border-white/30 px-4 py-1 rounded-full text-xs font-black en-text tracking-wide">
+                            Unit 2 • Vocabulary Practice
+                        </span>
+                        <span class="bg-white/20 border border-white/30 text-amber-100 px-3 py-1 rounded-full text-xs font-extrabold">
+                            <i class="fa-solid fa-hand-pointer text-yellow-300 ml-1"></i>
+                            سحب وإفلات • خيارات • ترتيب حروف • تقرير مستوى الطالب
+                        </span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black leading-tight">
+                        الاختبار الإلكتروني لمفردات الوحدة الثانية
+                        <span class="en-text block text-amber-200 text-lg sm:text-xl font-bold mt-1">Unit 2: Life styles — Vocabulary Practice (29 Marks)</span>
+                    </h1>
+
+                    <p class="text-amber-50/95 text-xs sm:text-sm font-semibold max-w-2xl leading-relaxed">
+                        أدخل اسمك ثم أجب عن الأسئلة الأربعة التالية (<strong class="text-yellow-200">29 فقرة</strong>)، وتابع شريط نسبة الإنجاز بالأعلى، ثم اضغط على «إنهاء الاختبار» لتحصل فوراً على <strong>تقرير شامل بمستوى الطالب والنسبة المئوية والتغذية الراجعة</strong>!
+                    </p>
+
+                    <!-- حقول اسم الطالب والصف للتقرير -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 max-w-xl pt-1">
+                        <div class="relative">
+                            <i class="fa-solid fa-user-graduate absolute right-3.5 top-1/2 -translate-y-1/2 text-lime-800 text-sm"></i>
+                            <input id="student-name-input" type="text" placeholder="اسم الطالب / الطالبة (يظهر في التقرير)..." class="w-full bg-white/95 text-slate-800 placeholder-slate-400 rounded-xl pr-9 pl-3 py-2 text-xs sm:text-sm font-bold border-2 border-amber-200 focus:outline-none focus:border-yellow-300 shadow-sm">
+                        </div>
+                        <div class="relative">
+                            <i class="fa-solid fa-school absolute right-3.5 top-1/2 -translate-y-1/2 text-lime-800 text-sm"></i>
+                            <input id="student-class-input" type="text" placeholder="الصف / الفصل (اختياري)..." class="w-full bg-white/95 text-slate-800 placeholder-slate-400 rounded-xl pr-9 pl-3 py-2 text-xs sm:text-sm font-bold border-2 border-amber-200 focus:outline-none focus:border-yellow-300 shadow-sm">
+                        </div>
+                    </div>
+
+                    <!-- روابط التنقل السريعة للأقسام الأربعة -->
+                    <div class="flex flex-wrap items-center gap-2 pt-1">
+                        <a href="#sec-ex1" class="bg-white/20 hover:bg-white/30 border border-white/30 px-3 py-1.5 rounded-xl text-xs font-extrabold transition">1. اختر الصحيح (10)</a>
+                        <a href="#sec-ex2" class="bg-white/20 hover:bg-white/30 border border-white/30 px-3 py-1.5 rounded-xl text-xs font-extrabold transition">2. السحب والإفلات (8)</a>
+                        <a href="#sec-ex3" class="bg-white/20 hover:bg-white/30 border border-white/30 px-3 py-1.5 rounded-xl text-xs font-extrabold transition">3. الكلمة المختلفة (5)</a>
+                        <a href="#sec-ex4" class="bg-yellow-300 hover:bg-yellow-200 text-slate-900 px-3 py-1.5 rounded-xl text-xs font-black shadow transition">4. ترتيب الحروف (6)</a>
+                    </div>
+                </div>
+
+                <!-- الشخصية الكرتونية المستوحاة من ورقة Vocabulary Practice + الإحصائيات -->
+                <div class="flex flex-row lg:flex-col items-center justify-between gap-3 shrink-0 lg:w-52">
+                    <div class="hidden sm:flex w-44 h-24 rounded-2xl bg-white/95 border-2 border-amber-200 shadow-md items-center justify-center p-2 animate-float">
+                        <svg viewBox="0 0 210 100" class="w-full h-full">
+                            <line x1="18" y1="74" x2="178" y2="74" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+                            <circle cx="24" cy="74" r="8" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                            <path d="M21,74 L24,77 L29,70" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="58" cy="74" r="8" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                            <path d="M55,74 L58,77 L63,70" fill="none" stroke="#1e293b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="92" cy="74" r="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+                            <circle cx="126" cy="74" r="8" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                            <circle cx="160" cy="74" r="8" fill="#ffffff" stroke="#f59e0b" stroke-width="3"/>
+                            <line x1="168" y1="74" x2="176" y2="48" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M176,48 Q192,46 200,54 Q190,62 173,60 Z" fill="#fbbf24" stroke="#334155" stroke-width="2.2" stroke-linejoin="round"/>
+                            <circle cx="136" cy="40" r="15" fill="#ffffff" stroke="#334155" stroke-width="2.6"/>
+                            <circle cx="131" cy="37" r="2" fill="#334155"/>
+                            <circle cx="141" cy="37" r="2" fill="#334155"/>
+                            <path d="M130,44 Q136,50 142,44" fill="none" stroke="#334155" stroke-width="2" stroke-linecap="round"/>
+                            <rect x="129" y="55" width="14" height="14" rx="4" fill="#f59e0b" stroke="#334155" stroke-width="2.2"/>
+                            <line x1="133" y1="69" x2="128" y2="85" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
+                            <line x1="139" y1="69" x2="144" y2="85" stroke="#334155" stroke-width="2.6" stroke-linecap="round"/>
+                            <line x1="136" y1="12" x2="94" y2="70" stroke="#facc15" stroke-width="7" stroke-linecap="round"/>
+                            <line x1="136" y1="12" x2="94" y2="70" stroke="#78350f" stroke-width="1.8" stroke-linecap="round"/>
+                            <polygon points="94,70 89,76 98,74" fill="#334155"/>
+                        </svg>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 w-full">
+                        <div class="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-2 text-center">
+                            <div class="text-[10px] font-bold text-amber-100">الفقرات</div>
+                            <div class="en-text text-lg font-black text-white">29</div>
+                        </div>
+                        <div class="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-2 text-center">
+                            <div class="text-[10px] font-bold text-amber-100">أجبت</div>
+                            <div id="hero-answered-count" class="en-text text-lg font-black text-yellow-300">0</div>
+                        </div>
+                        <div class="bg-white/15 backdrop-blur-sm border border-white/25 rounded-2xl p-2 text-center">
+                            <div class="text-[10px] font-bold text-amber-100">النسبة</div>
+                            <div id="hero-score-badge" class="en-text text-base font-black text-emerald-200">--%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- السؤال الأول: Ex. 1 — Choose the correct answer. (10 فقرات) -->
+        <!-- ========================================== -->
+        <section id="sec-ex1" class="no-print glass-section rounded-3xl border-2 border-lime-300 overflow-hidden">
+            <div dir="ltr" class="bg-gradient-to-r from-lime-50 via-amber-50/70 to-orange-50/60 border-b-2 border-lime-200 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 clickable-phrase" onclick="speakText('Exercise 1. Choose the correct answer.')">
+                    <div class="relative w-12 h-14 bg-white border-[3px] border-slate-800 rounded-xl shadow-md flex items-center justify-center shrink-0 -rotate-3">
+                        <div class="absolute -top-2.5 w-6 h-3 bg-amber-400 border-2 border-slate-800 rounded-md"></div>
+                        <span class="en-text text-sm font-black text-slate-900">Ex.1</span>
+                    </div>
+                    <div class="wood-banner px-5 py-2 rounded-2xl">
+                        <div class="text-[10px] font-black uppercase tracking-widest text-amber-950/80">Question 1 • 10 Marks</div>
+                        <h2 class="en-text text-lg sm:text-2xl font-black text-slate-900 leading-tight">Choose the correct answer.</h2>
+                    </div>
+                </div>
+                <div dir="rtl" class="flex flex-wrap items-center gap-2">
+                    <span class="bg-white border border-lime-300 text-lime-900 px-3 py-1 rounded-full text-xs font-extrabold">
+                        أنجزت: <span id="ex1-progress-badge" class="en-text text-orange-600">0/10</span>
+                    </span>
+                    <button type="button" onclick="checkEx1()" class="audio-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-check"></i> تحقق من السؤال 1
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 space-y-4">
+                <p class="text-xs sm:text-sm font-bold text-slate-600 flex items-center gap-2 bg-lime-50/90 border border-lime-200 rounded-2xl px-4 py-2.5">
+                    <i class="fa-solid fa-circle-check text-lime-600 text-base"></i>
+                    <span>اختر الكلمة المناسبة (<span class="en-text font-black">a / b / c / d</span>) لإكمال كل جملة وسماع نطقها الصحيح.</span>
+                </p>
+                <div id="ex1-container" dir="ltr" class="space-y-4"></div>
+                <div id="ex1-section-feedback" class="hidden text-center font-bold text-sm sm:text-base py-3 px-5 rounded-2xl"></div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- السؤال الثاني: Ex. 2 — Complete the sentences. (نظام السحب والإفلات — 8 فقرات) -->
+        <!-- ========================================== -->
+        <section id="sec-ex2" class="no-print glass-section rounded-3xl border-2 border-amber-300 overflow-hidden">
+            <div dir="ltr" class="bg-gradient-to-r from-amber-50 via-orange-50/70 to-yellow-50/60 border-b-2 border-amber-200 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 clickable-phrase" onclick="speakText('Exercise 2. Complete the sentences. Drag and drop the words from the word bank into the blanks.')">
+                    <div class="relative w-12 h-14 bg-white border-[3px] border-slate-800 rounded-xl shadow-md flex items-center justify-center shrink-0 rotate-2">
+                        <div class="absolute -top-2.5 w-6 h-3 bg-orange-400 border-2 border-slate-800 rounded-md"></div>
+                        <span class="en-text text-sm font-black text-slate-900">Ex.2</span>
+                    </div>
+                    <div class="wood-banner px-5 py-2 rounded-2xl">
+                        <div class="text-[10px] font-black uppercase tracking-widest text-amber-950/80">Question 2 • Drag &amp; Drop • 8 Marks</div>
+                        <h2 class="en-text text-lg sm:text-2xl font-black text-slate-900 leading-tight">Complete the sentences.</h2>
+                    </div>
+                </div>
+                <div dir="rtl" class="flex flex-wrap items-center gap-2">
+                    <span class="bg-white border border-amber-300 text-amber-900 px-3 py-1 rounded-full text-xs font-extrabold">
+                        أنجزت: <span id="ex2-progress-badge" class="en-text text-orange-600">0/8</span>
+                    </span>
+                    <button type="button" onclick="resetEx2Only()" class="audio-btn bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1">
+                        <i class="fa-solid fa-rotate-left"></i> مسح الفراغات
+                    </button>
+                    <button type="button" onclick="checkEx2()" class="audio-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-check"></i> تحقق من السؤال 2
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 space-y-5">
+                <!-- تعليمات السحب والإفلات (يدعم الماوس واللمس والنقر) -->
+                <div class="text-xs sm:text-sm font-bold text-slate-700 flex flex-wrap items-center justify-between gap-2 bg-amber-50/90 border border-amber-200 rounded-2xl px-4 py-2.5">
+                    <span class="flex items-center gap-2">
+                        <i class="fa-solid fa-arrows-up-down-left-right text-orange-600 text-base"></i>
+                        <span><strong>اسحب الكلمة وأفلتها</strong> داخل الفراغ المناسب (أو <strong>انقر على الكلمة</strong> ثم انقر على الفراغ). ولإرجاع كلمة اضغط عليها داخل الفراغ!</span>
+                    </span>
+                </div>
+
+                <!-- بنك الكلمات التفاعلي (Word Bank) — ثابت نسبياً لسهولة السحب -->
+                <div class="sticky top-[92px] z-30 bg-white/95 backdrop-blur-md border-2 border-[#6e8042] rounded-3xl p-4 shadow-lg space-y-2.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="en-text text-sm sm:text-base font-black text-rose-600 flex items-center gap-1.5">
+                            <i class="fa-solid fa-box-open text-amber-600"></i> Word Bank:
+                        </span>
+                        <span id="drag-helper-status" class="text-xs font-extrabold text-lime-800 bg-lime-100 px-3 py-0.5 rounded-full">
+                            اسحب أي كلمة أو انقر عليها لاختيارها
+                        </span>
+                    </div>
+                    <div id="word-bank-container" dir="ltr" class="flex flex-wrap items-center justify-center gap-2.5 pt-1"></div>
+                </div>
+
+                <!-- الجمل الثمانية مع مناطق الإفلات -->
+                <div id="ex2-container" dir="ltr" class="space-y-3.5"></div>
+                <div id="ex2-section-feedback" class="hidden text-center font-bold text-sm sm:text-base py-3 px-5 rounded-2xl"></div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- السؤال الثالث: Ex. 3 — Odd One Out (5 فقرات) -->
+        <!-- ========================================== -->
+        <section id="sec-ex3" class="no-print glass-section rounded-3xl border-2 border-orange-300 overflow-hidden">
+            <div dir="ltr" class="bg-gradient-to-r from-orange-50 via-amber-50/80 to-yellow-50/60 border-b-2 border-orange-200 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 clickable-phrase" onclick="speakText('Exercise 3. Odd One Out. Choose the word that does not belong in each row.')">
+                    <div class="relative w-12 h-14 bg-white border-[3px] border-slate-800 rounded-xl shadow-md flex items-center justify-center shrink-0 -rotate-2">
+                        <div class="absolute -top-2.5 w-6 h-3 bg-rose-400 border-2 border-slate-800 rounded-md"></div>
+                        <span class="en-text text-sm font-black text-slate-900">Ex.3</span>
+                    </div>
+                    <div class="wood-banner px-5 py-2 rounded-2xl">
+                        <div class="text-[10px] font-black uppercase tracking-widest text-amber-950/80">Question 3 • 5 Marks</div>
+                        <h2 class="en-text text-lg sm:text-2xl font-black text-slate-900 leading-tight">Odd One Out</h2>
+                    </div>
+                </div>
+                <div dir="rtl" class="flex flex-wrap items-center gap-2">
+                    <span class="bg-white border border-orange-300 text-orange-900 px-3 py-1 rounded-full text-xs font-extrabold">
+                        أنجزت: <span id="ex3-progress-badge" class="en-text text-orange-600">0/5</span>
+                    </span>
+                    <button type="button" onclick="checkEx3()" class="audio-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-check"></i> تحقق من السؤال 3
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 space-y-4">
+                <p class="text-xs sm:text-sm font-bold text-slate-600 flex items-center gap-2 bg-orange-50/90 border border-orange-200 rounded-2xl px-4 py-2.5">
+                    <i class="fa-regular fa-circle-dot text-orange-500 text-base"></i>
+                    <span>اقرأ الكلمات الأربع في كل سطر، ثم <strong>اضغط على الكلمة المختلفة (الشاذة)</strong> لوضع دائرة حولها!</span>
+                </p>
+                <div id="ex3-container" dir="ltr" class="space-y-3.5"></div>
+                <div id="ex3-section-feedback" class="hidden text-center font-bold text-sm sm:text-base py-3 px-5 rounded-2xl"></div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- السؤال الرابع: Ex. 4 — unscramble the words:- (6 صور وكلمات) -->
+        <!-- ========================================== -->
+        <section id="sec-ex4" class="no-print glass-section rounded-3xl border-2 border-teal-300 overflow-hidden">
+            <div dir="ltr" class="bg-gradient-to-r from-teal-50 via-emerald-50/70 to-amber-50/60 border-b-2 border-teal-200 p-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-3 clickable-phrase" onclick="speakText('Exercise 4. Unscramble the words. Look at each picture and arrange the letters.')">
+                    <div class="relative w-12 h-14 bg-white border-[3px] border-slate-800 rounded-xl shadow-md flex items-center justify-center shrink-0 rotate-2">
+                        <div class="absolute -top-2.5 w-6 h-3 bg-teal-400 border-2 border-slate-800 rounded-md"></div>
+                        <span class="en-text text-sm font-black text-slate-900">Ex.4</span>
+                    </div>
+                    <div class="wood-banner px-5 py-2 rounded-2xl">
+                        <div class="text-[10px] font-black uppercase tracking-widest text-amber-950/80">Question 4 • 6 Marks</div>
+                        <h2 class="en-text text-lg sm:text-2xl font-black text-slate-900 leading-tight">unscramble the words:-</h2>
+                    </div>
+                </div>
+                <div dir="rtl" class="flex flex-wrap items-center gap-2">
+                    <span class="bg-white border border-teal-300 text-teal-900 px-3 py-1 rounded-full text-xs font-extrabold">
+                        أنجزت: <span id="ex4-progress-badge" class="en-text text-teal-700">0/6</span>
+                    </span>
+                    <button type="button" onclick="checkEx4()" class="audio-btn bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-check"></i> تحقق من السؤال 4
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 space-y-5">
+                <p class="text-xs sm:text-sm font-bold text-slate-600 flex items-center gap-2 bg-teal-50/90 border border-teal-200 rounded-2xl px-4 py-2.5">
+                    <i class="fa-solid fa-lightbulb text-teal-600 text-base"></i>
+                    <span>انظر إلى الصورة ورتّب الحروف المبعثرة لتكوين الكلمة الصحيحة؛ يمكنك <strong>النقر على بلاطات الحروف</strong> أو <strong>الكتابة مباشرة</strong>!</span>
+                </p>
+                <div id="ex4-grid" dir="ltr" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+                <div id="ex4-section-feedback" class="hidden text-center font-bold text-sm sm:text-base py-3 px-5 rounded-2xl"></div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- لوحة إنهاء الاختبار وإصدار تقرير مستوى الطالب -->
+        <!-- ========================================== -->
+        <section class="no-print bg-white rounded-3xl border-2 border-amber-300 shadow-lg p-5 sm:p-6 text-center space-y-4">
+            <h3 class="text-lg sm:text-xl font-black text-slate-800">هل أنهيت جميع الأسئلة الأربعة (29 فقرة)؟</h3>
+            <p id="unanswered-warning" class="hidden text-xs sm:text-sm font-extrabold text-amber-800 bg-amber-100 border border-amber-300 rounded-xl px-4 py-2 inline-block"></p>
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <button type="button" onclick="submitFullQuiz()" class="audio-btn bg-gradient-to-r from-emerald-600 via-teal-600 to-sky-600 hover:from-emerald-700 hover:to-sky-700 text-white font-black px-8 py-3.5 rounded-2xl shadow-xl flex items-center gap-2.5 text-sm sm:text-base">
+                    <i class="fa-solid fa-award text-yellow-300 text-lg"></i>
+                    <span>إنهاء الاختبار وعرض تقرير مستوى الطالب</span>
+                </button>
+                <button type="button" onclick="showAllModelAnswers()" class="audio-btn bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 font-extrabold px-5 py-3 rounded-2xl flex items-center gap-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-eye"></i> عرض الإجابات النموذجية
+                </button>
+                <button type="button" onclick="resetEntireQuiz()" class="audio-btn bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-300 font-bold px-5 py-3 rounded-2xl flex items-center gap-2 text-xs sm:text-sm">
+                    <i class="fa-solid fa-rotate-right"></i> إعادة الاختبار
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- بطاقة التقرير الشامل لمستوى الطالب والنسبة المئوية -->
+        <!-- ========================================== -->
+        <section id="final-report-card" class="hidden animate-pop bg-white rounded-3xl border-2 border-emerald-500 shadow-2xl overflow-hidden">
+            <!-- رأس التقرير -->
+            <div class="bg-gradient-to-r from-[#5d7231] via-emerald-600 to-teal-700 text-white p-5 sm:px-7 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-3">
+                    <span class="w-12 h-12 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl shadow">
+                        <i class="fa-solid fa-trophy text-yellow-300"></i>
+                    </span>
+                    <div>
+                        <h3 class="text-xl sm:text-2xl font-black">تقرير مستوى الطالب — Vocabulary Practice (Unit 2)</h3>
+                        <p class="en-text text-xs text-emerald-100 font-semibold">Student Mastery Level Report, Percentage Score &amp; Feedback</p>
+                    </div>
+                </div>
+                <div class="no-print flex flex-wrap items-center gap-2">
+                    <button type="button" onclick="copyReportSummary()" class="audio-btn bg-white/20 hover:bg-white/30 border border-white/35 text-white px-3.5 py-1.5 rounded-full text-xs font-extrabold flex items-center gap-1.5">
+                        <i class="fa-solid fa-copy"></i> نسخ التقرير
+                    </button>
+                    <button type="button" onclick="window.print()" class="audio-btn bg-amber-400 hover:bg-amber-300 text-slate-950 px-3.5 py-1.5 rounded-full text-xs font-black flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-print"></i> طباعة التقرير
+                    </button>
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-6">
+                <!-- شريط بيانات الطالب ومستوى الإتقان العام -->
+                <div class="bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs sm:text-sm font-bold">
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-user-graduate text-emerald-600"></i>
+                        <span class="text-slate-500">الطالب:</span>
+                        <span id="rep-student-name" class="font-black text-slate-900">طالب متميز</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-school text-teal-600"></i>
+                        <span class="text-slate-500">الصف:</span>
+                        <span id="rep-student-class" class="font-black text-slate-900">—</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-medal text-amber-600"></i>
+                        <span class="text-slate-500">مستوى الإتقان:</span>
+                        <span id="rep-mastery-level" class="font-black text-emerald-700">—</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-sky-600"></i>
+                        <span class="text-slate-500">التاريخ:</span>
+                        <span id="rep-timestamp" class="font-black text-slate-900">—</span>
+                    </div>
+                </div>
+
+                <!-- النسبة المئوية الدائرية + ملخص التقدير والإنجاز -->
+                <div class="flex flex-col md:flex-row items-center gap-6 bg-gradient-to-br from-emerald-50/70 via-white to-amber-50/60 border-2 border-emerald-200 rounded-3xl p-5">
+                    <!-- دائرة النسبة المئوية -->
+                    <div class="relative w-40 h-40 shrink-0 flex items-center justify-center">
+                        <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
+                            <circle cx="60" cy="60" r="50" fill="none" stroke="#e2e8f0" stroke-width="11"/>
+                            <circle id="score-ring-circle" cx="60" cy="60" r="50" fill="none" stroke="#10b981" stroke-width="11" stroke-linecap="round" stroke-dasharray="314" stroke-dashoffset="314" style="transition: stroke-dashoffset 0.95s ease-out;"/>
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+                            <span id="final-pct-text" class="en-text text-3xl font-black text-slate-900">0%</span>
+                            <span id="final-marks-fraction" class="en-text text-xs font-extrabold text-emerald-700 mt-0.5">0 / 29</span>
+                        </div>
+                    </div>
+
+                    <!-- شارات التقدير والملخص -->
+                    <div class="flex-1 space-y-3 text-center md:text-right">
+                        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+                            <span id="final-rating-badge" class="inline-block px-4 py-1 rounded-full text-xs sm:text-sm font-black bg-emerald-100 text-emerald-800 border border-emerald-300">تقدير: ممتاز</span>
+                            <span id="final-completion-pill" class="inline-block px-3.5 py-1 rounded-full text-xs font-extrabold bg-sky-100 text-sky-900 border border-sky-300">نسبة الإنجاز: 100%</span>
+                        </div>
+                        <h4 id="final-student-greeting" class="text-xl sm:text-2xl font-black text-slate-900">أحسنت يا بطل!</h4>
+                        <p id="final-summary-msg" class="text-sm font-bold text-slate-700 leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- تحليل مستوى الطالب حسب المهارات الأربع -->
+                <div class="space-y-3">
+                    <h5 class="text-sm sm:text-base font-black text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-bar text-amber-600"></i>
+                        <span>تحليل مستوى الطالب في كل مهارة من مهارات الاختبار:</span>
+                    </h5>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div class="bg-lime-50/90 border-2 border-lime-200 rounded-2xl p-3.5 space-y-2">
+                            <div class="flex items-center justify-between text-xs font-black text-lime-900">
+                                <span>س1: الاختيار من متعدد</span>
+                                <span id="rep-ex1-score" class="en-text text-sm">0/10</span>
+                            </div>
+                            <div class="h-2.5 bg-white rounded-full overflow-hidden border border-lime-200">
+                                <div id="rep-ex1-bar" class="h-full w-0 bg-lime-600 rounded-full transition-all duration-700"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-black">
+                                <span id="rep-ex1-lvl" class="text-lime-800">—</span>
+                                <span id="rep-ex1-pct" class="en-text text-lime-900">0%</span>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50/90 border-2 border-amber-200 rounded-2xl p-3.5 space-y-2">
+                            <div class="flex items-center justify-between text-xs font-black text-amber-900">
+                                <span>س2: السحب والإفلات</span>
+                                <span id="rep-ex2-score" class="en-text text-sm">0/8</span>
+                            </div>
+                            <div class="h-2.5 bg-white rounded-full overflow-hidden border border-amber-200">
+                                <div id="rep-ex2-bar" class="h-full w-0 bg-amber-500 rounded-full transition-all duration-700"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-black">
+                                <span id="rep-ex2-lvl" class="text-amber-800">—</span>
+                                <span id="rep-ex2-pct" class="en-text text-amber-900">0%</span>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50/90 border-2 border-orange-200 rounded-2xl p-3.5 space-y-2">
+                            <div class="flex items-center justify-between text-xs font-black text-orange-900">
+                                <span>س3: الكلمة المختلفة</span>
+                                <span id="rep-ex3-score" class="en-text text-sm">0/5</span>
+                            </div>
+                            <div class="h-2.5 bg-white rounded-full overflow-hidden border border-orange-200">
+                                <div id="rep-ex3-bar" class="h-full w-0 bg-orange-500 rounded-full transition-all duration-700"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-black">
+                                <span id="rep-ex3-lvl" class="text-orange-800">—</span>
+                                <span id="rep-ex3-pct" class="en-text text-orange-900">0%</span>
+                            </div>
+                        </div>
+                        <div class="bg-teal-50/90 border-2 border-teal-200 rounded-2xl p-3.5 space-y-2">
+                            <div class="flex items-center justify-between text-xs font-black text-teal-900">
+                                <span>س4: ترتيب الحروف</span>
+                                <span id="rep-ex4-score" class="en-text text-sm">0/6</span>
+                            </div>
+                            <div class="h-2.5 bg-white rounded-full overflow-hidden border border-teal-200">
+                                <div id="rep-ex4-bar" class="h-full w-0 bg-teal-600 rounded-full transition-all duration-700"></div>
+                            </div>
+                            <div class="flex items-center justify-between text-[11px] font-black">
+                                <span id="rep-ex4-lvl" class="text-teal-800">—</span>
+                                <span id="rep-ex4-pct" class="en-text text-teal-900">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- التوصية التربوية المفصّلة بمستوى الطالب -->
+                <div id="pedagogical-advice-box" class="bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 space-y-2 text-xs sm:text-sm font-bold text-sky-950"></div>
+
+                <!-- التغذية الراجعة التفصيلية لجميع الفقرات الـ 29 -->
+                <div class="border-t border-slate-200 pt-5 space-y-3">
+                    <h5 class="text-sm sm:text-base font-black text-slate-800 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-emerald-600"></i>
+                        <span>التغذية الراجعة التفصيلية لجميع الفقرات (29 فقرة):</span>
+                    </h5>
+                    <div id="detailed-feedback-list" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 text-xs font-bold"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- تذييل تعليمي -->
+    <footer class="max-w-5xl mx-auto px-4 pt-10 pb-4 text-center">
+        <div class="bg-white/85 border border-slate-200/80 rounded-2xl py-3 px-6 inline-flex flex-wrap items-center justify-center gap-3 shadow-sm text-xs sm:text-sm text-slate-600">
+            <span class="en-text font-extrabold text-teal-700 tracking-wide">LANGUA LEARN</span>
+            <span class="text-slate-300">•</span>
+            <span class="font-bold text-slate-700">جميع الحقوق محفوظة للأستاذ: ماجد سعد السويهري</span>
+        </div>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- البرمجة التفاعلية + السحب والإفلات + الصوت التعليمي الهادئ -->
+    <!-- ========================================== -->
+    <script>
+        // ==========================================
+        // 1. بيانات الاختبار الكاملة (مطابقة للصور المرفقة)
+        // ==========================================
+
+        // السؤال الأول: Choose the correct answer. (10 فقرات)
+        const ex1Data = [
+            {
+                id: 1,
+                before: 'You put a',
+                after: 'on a small cut.',
+                options: [
+                    { key: 'a', text: 'bandage' },
+                    { key: 'b', text: 'dinosaur' },
+                    { key: 'c', text: 'butterfly' },
+                    { key: 'd', text: 'pond' }
+                ],
+                answer: 'a',
+                reasonAr: 'نضع الضماد (bandage) على الجرح الصغير لحمايته.'
+            },
+            {
+                id: 2,
+                before: 'My father went to the',
+                after: 'to buy medicine.',
+                options: [
+                    { key: 'a', text: 'camel' },
+                    { key: 'b', text: 'pharmacy' },
+                    { key: 'c', text: 'nest' },
+                    { key: 'd', text: 'octopus' }
+                ],
+                answer: 'b',
+                reasonAr: 'نشتري الدواء من الصيدلية (pharmacy).'
+            },
+            {
+                id: 3,
+                before: 'I eat bread with',
+                after: 'for breakfast.',
+                options: [
+                    { key: 'a', text: 'nest' },
+                    { key: 'b', text: 'fur wing' },
+                    { key: 'c', text: 'jam' },
+                    { key: 'd', text: 'journey' }
+                ],
+                answer: 'c',
+                reasonAr: 'نأكل الخبز مع المربى (jam) في وجبة الإفطار.'
+            },
+            {
+                id: 4,
+                before: 'Be careful! The soup is hot. You can',
+                after: 'your hand.',
+                options: [
+                    { key: 'a', text: 'burn' },
+                    { key: 'b', text: 'look after' },
+                    { key: 'c', text: 'swim' },
+                    { key: 'd', text: 'whisper' }
+                ],
+                answer: 'a',
+                reasonAr: 'الحساء الساخن قد يحرق يدك، ومعنى يحرق هو burn.'
+            },
+            {
+                id: 5,
+                before: 'I drink a glass of',
+                after: 'every morning.',
+                options: [
+                    { key: 'a', text: 'pepper' },
+                    { key: 'b', text: 'milk' },
+                    { key: 'c', text: 'eagle' },
+                    { key: 'd', text: 'desert' }
+                ],
+                answer: 'b',
+                reasonAr: 'نشرب كوباً من الحليب (milk) كل صباح.'
+            },
+            {
+                id: 6,
+                before: 'We eat pizza with a',
+                after: '.',
+                options: [
+                    { key: 'a', text: 'wing' },
+                    { key: 'b', text: 'camel' },
+                    { key: 'c', text: 'nest' },
+                    { key: 'd', text: 'fork' }
+                ],
+                answer: 'd',
+                reasonAr: 'نأكل البيتزا باستخدام الشوكة (fork).'
+            },
+            {
+                id: 7,
+                before: 'My',
+                after: 'hurts after I fell down.',
+                options: [
+                    { key: 'a', text: 'butterfly' },
+                    { key: 'b', text: 'knee' },
+                    { key: 'c', text: 'swan' },
+                    { key: 'd', text: 'pond' }
+                ],
+                answer: 'b',
+                reasonAr: 'عندما نسقط قد تؤلمنا الركبة (knee).'
+            },
+            {
+                id: 8,
+                before: 'The doctor gave me some',
+                after: '.',
+                options: [
+                    { key: 'a', text: 'pizza' },
+                    { key: 'b', text: 'beetle' },
+                    { key: 'c', text: 'olive tree' },
+                    { key: 'd', text: 'medicine' }
+                ],
+                answer: 'd',
+                reasonAr: 'يعطينا الطبيب الدواء (medicine) عند المرض.'
+            },
+            {
+                id: 9,
+                before: 'An',
+                after: 'can show broken bones.',
+                options: [
+                    { key: 'a', text: 'strawberry' },
+                    { key: 'b', text: 'X-ray' },
+                    { key: 'c', text: 'creature' },
+                    { key: 'd', text: 'insect' }
+                ],
+                answer: 'b',
+                reasonAr: 'الأشعة السينية (X-ray) تُظهر العظام المكسورة.'
+            },
+            {
+                id: 10,
+                before: 'I like',
+                after: 'on my salad.',
+                options: [
+                    { key: 'a', text: 'olive' },
+                    { key: 'b', text: 'journey' },
+                    { key: 'c', text: 'eagle' },
+                    { key: 'd', text: 'fur' }
+                ],
+                answer: 'a',
+                reasonAr: 'نضع الزيتون (olive) على السلطة.'
+            }
+        ];
+
+        // السؤال الثاني: Complete the sentences. (نظام السحب والإفلات — 8 فقرات)
+        const ex2WordBank = ['soap', 'finger', 'bread', 'restaurant', 'spoon', 'salt', 'toe', 'break'];
+        const ex2Data = [
+            {
+                id: 1,
+                before: 'Wash your hands with',
+                after: '.',
+                answer: 'soap',
+                reasonAr: 'نغسل أيدينا بالصابون (soap).'
+            },
+            {
+                id: 2,
+                before: 'We eat soup with a',
+                after: '.',
+                answer: 'spoon',
+                reasonAr: 'نتناول الحساء باستخدام الملعقة (spoon).'
+            },
+            {
+                id: 3,
+                before: 'I hurt my',
+                after: 'when I kicked the chair.',
+                answer: 'toe',
+                reasonAr: 'عندما ركلت الكرسي بقدمي تأذّى إصبع القدم (toe).'
+            },
+            {
+                id: 4,
+                before: 'My mother baked fresh',
+                after: '.',
+                answer: 'bread',
+                reasonAr: 'خبزت أمي خبزاً طازجاً (bread).'
+            },
+            {
+                id: 5,
+                before: 'We had dinner at a',
+                after: '.',
+                answer: 'restaurant',
+                reasonAr: 'تناولنا العشاء في المطعم (restaurant).'
+            },
+            {
+                id: 6,
+                before: "Don't put too much",
+                after: 'in the food.',
+                answer: 'salt',
+                reasonAr: 'لا تضع الكثير من الملح (salt) في الطعام.'
+            },
+            {
+                id: 7,
+                before: "Don't",
+                after: 'the glass.',
+                answer: 'break',
+                reasonAr: 'لا تكسر الكوب الزجاجي، ومعنى يكسر هو break.'
+            },
+            {
+                id: 8,
+                before: 'I write with my',
+                after: '.',
+                answer: 'finger',
+                reasonAr: 'أكتب باستخدام إصبعي (finger).'
+            }
+        ];
+
+        // السؤال الثالث: Odd One Out (5 فقرات)
+        const ex3Data = [
+            {
+                id: 1,
+                words: ['bread', 'cereal', 'milk', 'camel'],
+                answer: 'camel',
+                reasonAr: 'كلمة camel (جمل) حيوان، بينما البقية أطعمة ومشروبات للفطور.'
+            },
+            {
+                id: 2,
+                words: ['finger', 'pizza', 'knee', 'elbow'],
+                answer: 'pizza',
+                reasonAr: 'كلمة pizza (بيتزا) طعام، بينما البقية أجزاء من جسم الإنسان.'
+            },
+            {
+                id: 3,
+                words: ['fork', 'spoon', 'knife', 'butterfly'],
+                answer: 'butterfly',
+                reasonAr: 'كلمة butterfly (فراشة) حشرة، بينما البقية أدوات مائدة.'
+            },
+            {
+                id: 4,
+                words: ['strawberry', 'olive', 'medicine', 'jam'],
+                answer: 'medicine',
+                reasonAr: 'كلمة medicine (دواء) علاج طبي، بينما البقية أطعمة.'
+            },
+            {
+                id: 5,
+                words: ['octopus', 'pharmacy', 'restaurant', 'hospital'],
+                answer: 'octopus',
+                reasonAr: 'كلمة octopus (أخطبوط) حيوان بحري، بينما البقية أماكن ومبانٍ.'
+            }
+        ];
+
+        // السؤال الرابع: unscramble the words:- (6 صور وكلمات)
+        const ex4Data = [
+            {
+                id: 1,
+                scrambled: 'rdaeb',
+                answer: 'bread',
+                arMeaning: 'خبز',
+                hintEn: 'We bake this food and eat it with jam for breakfast.',
+                badgeColor: 'bg-[#b85324]',
+                svg: `
+                    <svg viewBox="0 0 240 175" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="vpLoaf1" x1="0" y1="0" x2="0.15" y2="1">
+                                <stop offset="0%" stop-color="#fb923c"/>
+                                <stop offset="45%" stop-color="#f59e42"/>
+                                <stop offset="82%" stop-color="#d97706"/>
+                                <stop offset="100%" stop-color="#a15207"/>
+                            </linearGradient>
+                            <linearGradient id="vpSlash1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#fffbeb"/>
+                                <stop offset="55%" stop-color="#fef08a"/>
+                                <stop offset="100%" stop-color="#fcd34d"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="240" height="175" fill="#ffffff"/>
+                        <ellipse cx="122" cy="142" rx="92" ry="12" fill="#e2e8f0"/>
+                        <g transform="translate(120, 92) rotate(-8)">
+                            <path d="M-98,8 C-98,-26 -64,-42 -8,-44 C56,-46 98,-30 98,4 C98,34 62,46 -6,48 C-66,50 -98,38 -98,8 Z" fill="url(#vpLoaf1)"/>
+                            <ellipse cx="-58" cy="12" rx="28" ry="16" fill="#fde68a" opacity="0.38"/>
+                            <path d="M-74,-22 C-52,-18 -28,2 -14,22 C-34,12 -58,-4 -78,-14 Z" fill="url(#vpSlash1)"/>
+                            <path d="M-76,-20 C-54,-22 -28,-2 -14,22" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linecap="round"/>
+                            <path d="M-32,-38 C-6,-32 22,-8 36,16 C12,6 -16,-14 -38,-28 Z" fill="url(#vpSlash1)"/>
+                            <path d="M-34,-36 C-8,-38 20,-12 36,16" fill="none" stroke="#b45309" stroke-width="2.6" stroke-linecap="round"/>
+                            <path d="M18,-42 C42,-36 66,-16 78,4 C56,-6 32,-22 12,-34 Z" fill="url(#vpSlash1)"/>
+                            <path d="M16,-40 C40,-42 64,-20 78,4" fill="none" stroke="#b45309" stroke-width="2.4" stroke-linecap="round"/>
+                            <path d="M62,-36 C78,-30 90,-18 95,-8 C82,-14 70,-24 58,-30 Z" fill="url(#vpSlash1)"/>
+                            <path d="M60,-35 C76,-36 88,-22 95,-8" fill="none" stroke="#b45309" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 2,
+                scrambled: 'nkife',
+                answer: 'knife',
+                arMeaning: 'سكين',
+                hintEn: 'A sharp kitchen tool used to cut food.',
+                badgeColor: 'bg-[#b85324]',
+                svg: `
+                    <svg viewBox="0 0 220 180" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <rect width="220" height="180" fill="#ffffff"/>
+                        <g stroke="#0f172a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+                            <path d="M78,100 L196,14 C180,58 152,96 104,128 Z" fill="#cbd5e1"/>
+                            <path d="M78,100 L194,16 L184,27 L82,104 Z" fill="#ffffff" stroke="none"/>
+                            <path d="M196,14 C180,58 152,96 104,128 L96,119 C142,88 172,54 196,14 Z" fill="#737d8c" stroke="none"/>
+                            <path d="M78,100 L196,14 C180,58 152,96 104,128 Z" fill="none" stroke="#0f172a" stroke-width="3"/>
+                            <path d="M78,100 L91,114 L46,158 C47,162 47,164 45,167 C36,170 24,162 20,154 C18,150 20,146 25,142 Z" fill="#d94e14"/>
+                            <path d="M87,110 L91,114 L46,158 C47,162 47,164 45,167 C39,169 34,167 32,163 C34,158 40,152 46,148 Z" fill="#9a1b0e" stroke="none"/>
+                            <path d="M78,100 L91,114 L46,158 C47,162 47,164 45,167 C36,170 24,162 20,154 C18,150 20,146 25,142 Z" fill="none" stroke="#0f172a" stroke-width="3"/>
+                            <circle cx="67" cy="122" r="4" fill="#522a0c" stroke="none"/>
+                            <circle cx="36" cy="150" r="4" fill="#522a0c" stroke="none"/>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 3,
+                scrambled: 'parhamcy',
+                answer: 'pharmacy',
+                arMeaning: 'صيدلية',
+                hintEn: 'The place where we go to buy medicine.',
+                badgeColor: 'bg-[#b85324]',
+                svg: `
+                    <svg viewBox="0 0 260 175" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="vpPharmBg3" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#ecfdf5"/>
+                                <stop offset="100%" stop-color="#e0f2fe"/>
+                            </linearGradient>
+                            <linearGradient id="vpPharmSign3" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stop-color="#059669"/>
+                                <stop offset="100%" stop-color="#0d9488"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="260" height="175" rx="12" fill="url(#vpPharmBg3)"/>
+                        <!-- شارة الصليب الأخضر العلوية بدون كشف الإملاء -->
+                        <rect x="86" y="8" width="88" height="24" rx="10" fill="url(#vpPharmSign3)" stroke="#065f46" stroke-width="1.6"/>
+                        <circle cx="130" cy="20" r="9" fill="#ffffff"/>
+                        <path d="M130,15 L130,25 M125,20 L135,20" stroke="#059669" stroke-width="3.2" stroke-linecap="round"/>
+                        <!-- أرفف الأدوية -->
+                        <rect x="12" y="64" width="82" height="5" rx="2.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+                        <rect x="12" y="99" width="82" height="5" rx="2.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+                        <rect x="166" y="64" width="82" height="5" rx="2.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+                        <rect x="166" y="99" width="82" height="5" rx="2.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.2"/>
+                        <!-- علب وعبوات على الأرفف -->
+                        <g stroke="#1e293b" stroke-width="1.2">
+                            <rect x="18" y="42" width="16" height="22" rx="4" fill="#b45309"/>
+                            <rect x="21" y="37" width="10" height="5" rx="1.5" fill="#ffffff"/>
+                            <rect x="39" y="44" width="22" height="20" rx="3" fill="#38bdf8"/>
+                            <rect x="66" y="41" width="18" height="23" rx="4" fill="#22c55e"/>
+                            <rect x="17" y="77" width="25" height="22" rx="3" fill="#ffffff"/>
+                            <path d="M29.5,82 L29.5,92 M24.5,87 L34.5,87" stroke="#ef4444" stroke-width="2.4"/>
+                            <rect x="47" y="76" width="16" height="23" rx="4" fill="#f43f5e"/>
+                            <rect x="68" y="79" width="20" height="20" rx="3" fill="#fb923c"/>
+                            <rect x="172" y="42" width="17" height="22" rx="4" fill="#f97316"/>
+                            <rect x="194" y="44" width="22" height="20" rx="3" fill="#a855f7"/>
+                            <rect x="222" y="42" width="18" height="22" rx="4" fill="#0284c7"/>
+                            <rect x="172" y="76" width="16" height="23" rx="4" fill="#facc15"/>
+                            <rect x="194" y="78" width="24" height="21" rx="3" fill="#10b981"/>
+                            <rect x="223" y="76" width="20" height="23" rx="3" fill="#3b82f6"/>
+                        </g>
+                        <!-- الصيدلي المبتسم -->
+                        <path d="M100,115 C102,92 114,84 130,84 C146,84 158,92 160,115 Z" fill="#ffffff" stroke="#1e293b" stroke-width="1.8"/>
+                        <path d="M121,84 L130,98 L139,84" fill="#38bdf8" stroke="#1e293b" stroke-width="1.4"/>
+                        <circle cx="130" cy="64" r="17" fill="#fed7aa" stroke="#7c2d12" stroke-width="1.6"/>
+                        <path d="M113,62 C113,44 147,44 147,62 C141,54 121,54 113,62 Z" fill="#6b3410"/>
+                        <circle cx="124" cy="64" r="2.1" fill="#0f172a"/>
+                        <circle cx="136" cy="64" r="2.1" fill="#0f172a"/>
+                        <path d="M125,71 Q130,76 135,71" fill="none" stroke="#b91c1c" stroke-width="1.8" stroke-linecap="round"/>
+                        <!-- طاولة الصيدلية والأدوية -->
+                        <rect x="4" y="128" width="252" height="45" rx="6" fill="#0284c7" stroke="#075985" stroke-width="1.8"/>
+                        <rect x="2" y="112" width="256" height="22" rx="5" fill="#ffffff" stroke="#0284c7" stroke-width="1.8"/>
+                        <circle cx="130" cy="153" r="14" fill="#ffffff"/>
+                        <path d="M130,145 L130,161 M122,153 L138,153" stroke="#10b981" stroke-width="4.5" stroke-linecap="round"/>
+                        <!-- عبوات دواء وكبسولات فوق الطاولة -->
+                        <g stroke="#1e293b" stroke-width="1.4">
+                            <rect x="18" y="92" width="24" height="35" rx="5" fill="#b45309"/>
+                            <rect x="20" y="84" width="20" height="8" rx="2" fill="#ffffff"/>
+                            <rect x="21" y="101" width="18" height="17" rx="2" fill="#fffbeb" stroke="none"/>
+                            <path d="M30,105 L30,114 M25.5,109.5 L34.5,109.5" stroke="#16a34a" stroke-width="2.5"/>
+                            <rect x="52" y="118" width="20" height="9" rx="4.5" transform="rotate(-16 62 122)" fill="#ef4444"/>
+                            <rect x="88" y="103" width="26" height="28" rx="4" fill="#e2e8f0"/>
+                            <circle cx="96" cy="111" r="3.6" fill="#38bdf8"/><circle cx="106" cy="111" r="3.6" fill="#38bdf8"/>
+                            <circle cx="96" cy="121" r="3.6" fill="#fb923c"/><circle cx="106" cy="121" r="3.6" fill="#fb923c"/>
+                            <rect x="186" y="102" width="30" height="25" rx="4" fill="#ffffff"/>
+                            <path d="M201,106 L201,116 M196,111 L206,111" stroke="#ef4444" stroke-width="3"/>
+                            <rect x="222" y="95" width="22" height="32" rx="5" fill="#ec4899"/>
+                            <rect x="225" y="87" width="16" height="8" rx="2" fill="#ffffff"/>
+                        </g>
+                    </svg>
+                `
+            },
+            {
+                id: 4,
+                scrambled: 'lracee',
+                answer: 'cereal',
+                arMeaning: 'حبوب الإفطار',
+                hintEn: 'Crunchy rings eaten in a bowl with milk for breakfast.',
+                badgeColor: 'bg-[#657b37]',
+                svg: `
+                    <svg viewBox="0 0 240 180" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="vpBowl4" x1="0" y1="0" x2="1" y2="0.4">
+                                <stop offset="0%" stop-color="#4e7a8a"/>
+                                <stop offset="45%" stop-color="#6096a6"/>
+                                <stop offset="72%" stop-color="#a5f3fc"/>
+                                <stop offset="100%" stop-color="#cffafe"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="240" height="180" fill="#ffffff"/>
+                        <ellipse cx="120" cy="148" rx="92" ry="19" fill="#fed7aa" opacity="0.7"/>
+                        <ellipse cx="120" cy="80" rx="88" ry="24" fill="#a5f3fc" stroke="#1e3a5f" stroke-width="2.5"/>
+                        <ellipse cx="120" cy="82" rx="80" ry="18" fill="#5c3a21"/>
+                        <g stroke="#3b1d0a" stroke-width="1.5">
+                            <g transform="translate(86, 54)"><circle r="10" fill="#fbbf24"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(110, 46)"><circle r="10" fill="#fb923c"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(132, 42)"><circle r="10" fill="#f59e0b"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(154, 54)"><circle r="9.5" fill="#fbbf24"/><circle r="3.8" fill="#ffffff"/></g>
+                            <circle cx="146" cy="50" r="7" fill="#335c81"/>
+                            <g transform="translate(64, 72)"><circle r="10" fill="#fb923c"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(86, 70)"><circle r="9.5" fill="#f43f5e"/><circle r="3.8" fill="#ffffff"/></g>
+                            <g transform="translate(106, 64)"><circle r="10.5" fill="#fbbf24"/><circle r="4.2" fill="#ffffff"/></g>
+                            <g transform="translate(124, 66)"><circle r="11" fill="#fde047"/><circle r="4.2" fill="#ffffff"/></g>
+                            <g transform="translate(148, 66)"><circle r="10.5" fill="#fb923c"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(168, 70)"><circle r="9.5" fill="#f59e0b"/><circle r="3.6" fill="#ffffff"/></g>
+                            <g transform="translate(96, 80)"><circle r="9.5" fill="#4ade80"/><circle r="3.8" fill="#ffffff"/></g>
+                            <g transform="translate(116, 82)"><circle r="10" fill="#fb923c"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(136, 84)"><circle r="10" fill="#4ade80"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(158, 84)"><circle r="10" fill="#fbbf24"/><circle r="4" fill="#ffffff"/></g>
+                            <g transform="translate(178, 84)"><circle r="9.5" fill="#fb923c"/><circle r="3.6" fill="#ffffff"/></g>
+                            <g transform="translate(76, 84)"><circle r="9.5" fill="#fbbf24"/><circle r="3.8" fill="#ffffff"/></g>
+                        </g>
+                        <path d="M32,80 C36,120 66,142 86,146 L84,154 C100,160 140,160 156,154 L154,146 C174,142 204,120 208,80 C192,100 48,100 32,80 Z" fill="url(#vpBowl4)" stroke="#1e3a5f" stroke-width="2.5" stroke-linejoin="round"/>
+                        <path d="M106,110 C132,110 162,106 184,96 C176,122 156,136 134,140 C116,138 108,126 106,110 Z" fill="#ffffff" opacity="0.65"/>
+                    </svg>
+                `
+            },
+            {
+                id: 5,
+                scrambled: 'mdiecine',
+                answer: 'medicine',
+                arMeaning: 'دواء',
+                hintEn: 'Pills or syrup that the doctor gives you when you are sick.',
+                badgeColor: 'bg-[#657b37]',
+                svg: `
+                    <svg viewBox="0 0 220 165" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <rect width="220" height="165" fill="#ffffff"/>
+                        <ellipse cx="110" cy="142" rx="84" ry="11" fill="#f1f5f9"/>
+                        <!-- علب الدواء الثلاث -->
+                        <rect x="42" y="54" width="38" height="68" rx="7" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+                        <rect x="46" y="42" width="30" height="12" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.6"/>
+                        <rect x="46" y="72" width="30" height="28" rx="3" fill="#e0f2fe"/>
+                        <path d="M61,79 L61,93 M54,86 L68,86" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+
+                        <rect x="88" y="42" width="44" height="82" rx="8" fill="#92400e" stroke="#451a03" stroke-width="2"/>
+                        <rect x="94" y="30" width="32" height="12" rx="3" fill="#78350f" stroke="#451a03" stroke-width="1.6"/>
+                        <rect x="94" y="64" width="32" height="34" rx="3" fill="#fef3c7"/>
+                        <path d="M110,73 L110,89 M102,81 L118,81" stroke="#dc2626" stroke-width="3.5" stroke-linecap="round"/>
+
+                        <rect x="138" y="58" width="36" height="64" rx="7" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+                        <rect x="142" y="46" width="28" height="12" rx="3" fill="#e2e8f0" stroke="#64748b" stroke-width="1.6"/>
+                        <rect x="142" y="76" width="28" height="24" rx="3" fill="#dcfce7"/>
+
+                        <!-- شريط الحبوب والكبسولات الملونة -->
+                        <rect x="128" y="114" width="66" height="24" rx="5" transform="rotate(-8 160 126)" fill="#e2e8f0" stroke="#64748b" stroke-width="1.5"/>
+                        <circle cx="144" cy="126" r="5" fill="#2563eb"/>
+                        <circle cx="160" cy="124" r="5" fill="#2563eb"/>
+                        <circle cx="176" cy="122" r="5" fill="#2563eb"/>
+                        <rect x="24" y="122" width="20" height="9" rx="4.5" transform="rotate(18 34 126)" fill="#ef4444" stroke="#991b1b" stroke-width="1.2"/>
+                        <rect x="48" y="130" width="20" height="9" rx="4.5" transform="rotate(-14 58 134)" fill="#f59e0b" stroke="#92400e" stroke-width="1.2"/>
+                        <circle cx="84" cy="134" r="6" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+                    </svg>
+                `
+            },
+            {
+                id: 6,
+                scrambled: 'soopn',
+                answer: 'spoon',
+                arMeaning: 'ملعقة',
+                hintEn: 'We use this to eat soup or cereal.',
+                badgeColor: 'bg-[#657b37]',
+                svg: `
+                    <svg viewBox="0 0 220 180" preserveAspectRatio="xMidYMid meet" class="w-full h-full">
+                        <defs>
+                            <linearGradient id="vpWoodBody6" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#c97a3a"/>
+                                <stop offset="50%" stop-color="#b05e21"/>
+                                <stop offset="100%" stop-color="#7c3a0f"/>
+                            </linearGradient>
+                            <linearGradient id="vpWoodBowl6" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#78350f"/>
+                                <stop offset="45%" stop-color="#a85316"/>
+                                <stop offset="100%" stop-color="#c9722c"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="220" height="180" fill="#ffffff"/>
+                        <g transform="translate(110, 90) rotate(-42)">
+                            <path d="M-98,0 C-98,-12 -84,-16 -64,-12 L2,-5 C12,-14 26,-32 54,-32 C84,-32 100,-18 100,0 C100,18 84,32 54,32 C26,32 12,14 2,5 L-64,12 C-84,16 -98,12 -98,0 Z" fill="url(#vpWoodBody6)" stroke="#0f172a" stroke-width="4" stroke-linejoin="round"/>
+                            <ellipse cx="56" cy="0" rx="37" ry="23" fill="url(#vpWoodBowl6)" stroke="#0f172a" stroke-width="2.4"/>
+                            <path d="M24,-4 C28,-18 52,-23 76,-16 C56,-17 38,-12 30,2 C26,10 30,18 40,21 C24,18 20,8 24,-4 Z" fill="#6b2f0b" opacity="0.55"/>
+                            <path d="M-90,-2 C-86,-8 -74,-10 -58,-8 L-10,-4 C-28,-3 -54,-2 -76,2 C-86,4 -92,2 -90,-2 Z" fill="#eab382" opacity="0.72"/>
+                        </g>
+                    </svg>
+                `
+            }
+        ];
+
+        // ==========================================
+        // 2. حالة إجابات الطالب
+        // ==========================================
+        const quizState = {
+            ex1: {}, // { 1: 'a', ... }
+            ex2: {}, // { 1: 'soap', ... }
+            ex3: {}, // { 1: 'camel', ... }
+            ex4: {}  // { 1: 'bread', ... }
+        };
+        let selectedDragWord = null; // لدعم النقر ثم الإفلات على شاشات اللمس
+        let activeDraggingWord = null; // الكلمة المسحوبة حالياً بالماوس
+        const ex4UsedTileIndices = {};
+        let lastReportPlainText = '';
+
+        // ==========================================
+        // 3. بناء واجهة السؤال الأول (Choose the correct answer)
+        // ==========================================
+        function renderEx1() {
+            const container = document.getElementById('ex1-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            ex1Data.forEach(item => {
+                const card = document.createElement('div');
+                card.id = `ex1-card-${item.id}`;
+                card.className = 'sentence-box bg-white border-2 border-lime-200 rounded-3xl p-4 shadow-sm space-y-3 transition-all';
+
+                const optsHtml = item.options.map(opt => `
+                    <button type="button" id="ex1-opt-${item.id}-${opt.key}" onclick="selectEx1Option(${item.id}, '${opt.key}')" class="clickable-phrase flex items-center gap-2.5 bg-slate-50 hover:bg-lime-50 border-2 border-slate-200 hover:border-lime-400 rounded-2xl px-3.5 py-2.5 text-left transition">
+                        <span class="w-7 h-7 rounded-full bg-[#6e8042] text-white font-black text-sm en-text flex items-center justify-center shrink-0">${opt.key}</span>
+                        <span class="en-text font-extrabold text-sm sm:text-base text-slate-800">${opt.text}</span>
+                    </button>
+                `).join('');
+
+                const afterDisplay = item.after === '.' ? '.' : ` ${item.after}`;
+
+                card.innerHTML = `
+                    <div class="bg-[#fef7d6] border border-amber-200 rounded-2xl px-4 py-3 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 flex-wrap">
+                            <span class="w-8 h-8 rounded-xl bg-[#b85324] text-white font-black text-base flex items-center justify-center shadow shrink-0 en-text">${item.id}</span>
+                            <p class="sentence-text en-text text-base sm:text-lg font-black text-slate-900">
+                                ${item.before}
+                                <span id="ex1-blank-${item.id}" class="inline-block min-w-[92px] text-center border-b-[3px] border-slate-800 text-emerald-700 px-2 mx-1">______</span>${afterDisplay}
+                            </p>
+                        </div>
+                        <button type="button" onclick="speakEx1Item(${item.id})" class="audio-btn w-9 h-9 rounded-full bg-white text-lime-700 border border-lime-300 shadow-sm flex items-center justify-center shrink-0" title="استمع للجملة">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">${optsHtml}</div>
+                    <div id="ex1-fb-${item.id}" dir="rtl" class="hidden text-xs font-extrabold px-3.5 py-2 rounded-xl"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function speakEx1Item(itemId) {
+            const item = ex1Data.find(x => x.id === itemId);
+            if (!item) return;
+            const chosenKey = quizState.ex1[itemId];
+            const chosen = chosenKey ? item.options.find(o => o.key === chosenKey) : null;
+            const suffix = item.after === '.' ? '.' : ` ${item.after}`;
+            const text = chosen
+                ? `${item.before} ${chosen.text}${suffix}`
+                : `${item.before} blank${suffix}`;
+            speakText(text, null, false, `ex1-card-${itemId}`);
+        }
+
+        function selectEx1Option(itemId, optKey) {
+            quizState.ex1[itemId] = optKey;
+            const item = ex1Data.find(x => x.id === itemId);
+            if (!item) return;
+
+            const chosen = item.options.find(o => o.key === optKey);
+            const blank = document.getElementById(`ex1-blank-${itemId}`);
+            if (blank && chosen) blank.textContent = chosen.text;
+
+            item.options.forEach(o => {
+                const btn = document.getElementById(`ex1-opt-${itemId}-${o.key}`);
+                if (!btn) return;
+                btn.classList.remove('border-amber-500', 'bg-amber-50', 'ring-2', 'ring-amber-300', 'border-emerald-500', 'bg-emerald-50', 'border-rose-500', 'bg-rose-50');
+                if (o.key === optKey) {
+                    btn.classList.add('border-amber-500', 'bg-amber-50', 'ring-2', 'ring-amber-300');
+                }
+            });
+
+            const card = document.getElementById(`ex1-card-${itemId}`);
+            const fb = document.getElementById(`ex1-fb-${itemId}`);
+            if (card) card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+            if (fb) fb.classList.add('hidden');
+
+            if (chosen) {
+                const suffix = item.after === '.' ? '.' : ` ${item.after}`;
+                speakText(`${item.before} ${chosen.text}${suffix}`, null, false, `ex1-card-${itemId}`);
+            }
+            updateProgressUI();
+        }
+
+        // ==========================================
+        // 4. بناء واجهة السؤال الثاني (السحب والإفلات + النقر للموبايل)
+        // ==========================================
+        function getUsedEx2Words() {
+            return new Set(Object.values(quizState.ex2).filter(Boolean));
+        }
+
+        function renderWordBank() {
+            const bank = document.getElementById('word-bank-container');
+            if (!bank) return;
+            const usedSet = getUsedEx2Words();
+
+            bank.innerHTML = ex2WordBank.map(word => {
+                const isUsed = usedSet.has(word);
+                const isSelected = selectedDragWord === word && !isUsed;
+                const extraClass = isUsed
+                    ? 'drag-chip-used bg-slate-100 text-slate-400 border-slate-200'
+                    : isSelected
+                        ? 'drag-chip-selected'
+                        : 'bg-gradient-to-b from-amber-50 to-amber-100 text-amber-950 border-amber-400';
+
+                return `
+                    <div
+                        id="bank-chip-${word}"
+                        draggable="${!isUsed}"
+                        ondragstart="handleDragStart(event, '${word}')"
+                        ondragend="handleDragEnd(event)"
+                        onclick="handleBankWordClick('${word}')"
+                        class="drag-chip en-text px-4 py-2 rounded-2xl border-2 font-black text-sm sm:text-base shadow-sm flex items-center gap-1.5 ${extraClass}"
+                        title="${isUsed ? 'تم استخدام هذه الكلمة' : 'اسحب الكلمة إلى الفراغ أو انقر عليها'}"
+                    >
+                        <i class="fa-solid fa-grip-vertical text-[11px] opacity-60"></i>
+                        <span>${word}</span>
+                    </div>
+                `;
+            }).join('');
+
+            const statusEl = document.getElementById('drag-helper-status');
+            if (statusEl) {
+                if (selectedDragWord) {
+                    statusEl.innerHTML = `الكلمة المختارة: <span class="en-text font-black text-orange-700">${selectedDragWord}</span> — اضغط على الفراغ لإفلاتها`;
+                } else if (usedSet.size === ex2WordBank.length) {
+                    statusEl.textContent = 'أحسنت! تم توزيع جميع الكلمات على الفراغات.';
+                } else {
+                    statusEl.textContent = 'اسحب أي كلمة إلى الفراغ أو انقر عليها لاختيارها';
+                }
+            }
+        }
+
+        function renderEx2() {
+            renderWordBank();
+            const container = document.getElementById('ex2-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            ex2Data.forEach(item => {
+                const placed = quizState.ex2[item.id] || '';
+                const card = document.createElement('div');
+                card.id = `ex2-card-${item.id}`;
+                card.className = 'sentence-box bg-white border-2 border-amber-200 rounded-3xl p-4 shadow-sm space-y-2.5 transition-all';
+
+                const afterDisplay = item.after === '.' ? '.' : ` ${item.after}`;
+                const zoneContent = placed
+                    ? `<span class="en-text font-black text-base">${placed}</span><i class="fa-solid fa-circle-xmark text-xs text-rose-500/80 hover:text-rose-700" title="إرجاع الكلمة لبنك الكلمات"></i>`
+                    : `<span class="text-xs font-bold text-amber-700/70">أفلت الكلمة هنا</span>`;
+
+                card.innerHTML = `
+                    <div class="bg-[#fef7d6] border border-amber-200 rounded-2xl px-4 py-3 flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-3 flex-wrap flex-1">
+                            <span class="w-8 h-8 rounded-xl bg-[#b85324] text-white font-black text-base flex items-center justify-center shadow shrink-0 en-text">${item.id}</span>
+                            <div class="sentence-text en-text text-base sm:text-lg font-black text-slate-900 leading-loose flex flex-wrap items-center gap-1.5">
+                                <span>${item.before}</span>
+                                <span
+                                    id="ex2-drop-${item.id}"
+                                    ondragover="handleDragOver(event, ${item.id})"
+                                    ondragleave="handleDragLeave(event, ${item.id})"
+                                    ondrop="handleDrop(event, ${item.id})"
+                                    onclick="handleDropZoneClick(${item.id})"
+                                    class="drop-zone ${placed ? 'drop-zone-filled' : ''}"
+                                >
+                                    ${zoneContent}
+                                </span>
+                                <span>${afterDisplay}</span>
+                            </div>
+                        </div>
+                        <button type="button" onclick="speakEx2Item(${item.id})" class="audio-btn w-9 h-9 rounded-full bg-white text-orange-700 border border-orange-200 shadow-sm flex items-center justify-center shrink-0" title="استمع للجملة">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+                    <div id="ex2-fb-${item.id}" dir="rtl" class="hidden text-xs font-extrabold px-3.5 py-2 rounded-xl"></div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function handleDragStart(ev, word) {
+            const usedSet = getUsedEx2Words();
+            if (usedSet.has(word)) {
+                ev.preventDefault();
+                return;
+            }
+            activeDraggingWord = word;
+            selectedDragWord = word;
+            try {
+                ev.dataTransfer.setData('text/plain', word);
+                ev.dataTransfer.effectAllowed = 'move';
+            } catch (e) {}
+            speakText(word);
+        }
+
+        function handleDragEnd() {
+            activeDraggingWord = null;
+            document.querySelectorAll('.drop-zone-over').forEach(z => z.classList.remove('drop-zone-over'));
+        }
+
+        function handleDragOver(ev, itemId) {
+            ev.preventDefault();
+            try {
+                ev.dataTransfer.dropEffect = 'move';
+            } catch (e) {}
+            const zone = document.getElementById(`ex2-drop-${itemId}`);
+            if (zone) zone.classList.add('drop-zone-over');
+        }
+
+        function handleDragLeave(ev, itemId) {
+            const zone = document.getElementById(`ex2-drop-${itemId}`);
+            if (zone) zone.classList.remove('drop-zone-over');
+        }
+
+        function handleDrop(ev, itemId) {
+            ev.preventDefault();
+            const zone = document.getElementById(`ex2-drop-${itemId}`);
+            if (zone) zone.classList.remove('drop-zone-over');
+
+            let word = activeDraggingWord;
+            try {
+                const dt = ev.dataTransfer.getData('text/plain');
+                if (dt) word = dt;
+            } catch (e) {}
+
+            if (!word || !ex2WordBank.includes(word)) return;
+            placeWordInEx2(itemId, word);
+        }
+
+        function handleBankWordClick(word) {
+            const usedSet = getUsedEx2Words();
+            if (usedSet.has(word)) return;
+
+            if (selectedDragWord === word) {
+                selectedDragWord = null;
+            } else {
+                selectedDragWord = word;
+                speakText(word);
+            }
+            renderWordBank();
+        }
+
+        function handleDropZoneClick(itemId) {
+            const currentWord = quizState.ex2[itemId];
+            // إذا كان هناك كلمة مختارة من بنك الكلمات، ضعها في هذا الفراغ
+            if (selectedDragWord) {
+                placeWordInEx2(itemId, selectedDragWord);
+                return;
+            }
+            // وإلا إن كان الفراغ ممتلئاً، أعد الكلمة إلى بنك الكلمات
+            if (currentWord) {
+                delete quizState.ex2[itemId];
+                refreshEx2SingleZone(itemId);
+                renderWordBank();
+                updateProgressUI();
+                showToast(`تم إرجاع كلمة "${currentWord}" إلى بنك الكلمات.`);
+            } else {
+                showToast('اسحب كلمة من بنك الكلمات بالأعلى أو انقر عليها ثم انقر هنا!');
+            }
+        }
+
+        function placeWordInEx2(itemId, word) {
+            // إذا كانت الكلمة موجودة في فراغ آخر، أفرغه أولاً
+            Object.keys(quizState.ex2).forEach(k => {
+                if (quizState.ex2[k] === word) {
+                    delete quizState.ex2[k];
+                    refreshEx2SingleZone(Number(k));
+                }
+            });
+
+            quizState.ex2[itemId] = word;
+            selectedDragWord = null;
+            activeDraggingWord = null;
+
+            refreshEx2SingleZone(itemId);
+            renderWordBank();
+            updateProgressUI();
+
+            const item = ex2Data.find(x => x.id === itemId);
+            if (item) {
+                const suffix = item.after === '.' ? '.' : ` ${item.after}`;
+                speakText(`${item.before} ${word}${suffix}`, null, false, `ex2-card-${itemId}`);
+            }
+        }
+
+        function refreshEx2SingleZone(itemId) {
+            const zone = document.getElementById(`ex2-drop-${itemId}`);
+            const card = document.getElementById(`ex2-card-${itemId}`);
+            const fb = document.getElementById(`ex2-fb-${itemId}`);
+            const placed = quizState.ex2[itemId] || '';
+
+            if (card) card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+            if (fb) fb.classList.add('hidden');
+            if (zone) {
+                zone.classList.remove('drop-zone-filled', 'drop-zone-correct', 'drop-zone-wrong', 'drop-zone-over');
+                if (placed) {
+                    zone.classList.add('drop-zone-filled');
+                    zone.innerHTML = `<span class="en-text font-black text-base">${placed}</span><i class="fa-solid fa-circle-xmark text-xs text-rose-500/80 hover:text-rose-700" title="إرجاع الكلمة"></i>`;
+                } else {
+                    zone.innerHTML = `<span class="text-xs font-bold text-amber-700/70">أفلت الكلمة هنا</span>`;
+                }
+            }
+        }
+
+        function speakEx2Item(itemId) {
+            const item = ex2Data.find(x => x.id === itemId);
+            if (!item) return;
+            const placed = quizState.ex2[itemId];
+            const suffix = item.after === '.' ? '.' : ` ${item.after}`;
+            const text = placed
+                ? `${item.before} ${placed}${suffix}`
+                : `${item.before} blank${suffix}`;
+            speakText(text, null, false, `ex2-card-${itemId}`);
+        }
+
+        function resetEx2Only() {
+            quizState.ex2 = {};
+            selectedDragWord = null;
+            renderEx2();
+            const secFb = document.getElementById('ex2-section-feedback');
+            if (secFb) secFb.classList.add('hidden');
+            updateProgressUI();
+            showToast('تمت إعادة جميع الكلمات إلى بنك الكلمات!');
+        }
+
+        // ==========================================
+        // 5. بناء واجهة السؤال الثالث (Odd One Out)
+        // ==========================================
+        function renderEx3() {
+            const container = document.getElementById('ex3-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            ex3Data.forEach(row => {
+                const rowDiv = document.createElement('div');
+                rowDiv.id = `ex3-row-${row.id}`;
+                rowDiv.className = 'sentence-box bg-[#fef7d6] border-2 border-amber-200 rounded-3xl p-3.5 sm:px-5 shadow-sm transition-all space-y-2.5';
+
+                const wordsHtml = row.words.map((word, idx) => `
+                    <button type="button" id="ex3-btn-${row.id}-${word}" onclick="selectEx3Word(${row.id}, '${word}')" class="odd-word-pill en-text bg-white/95 hover:bg-amber-100 text-slate-900 border-2 border-amber-200/80 px-4 py-1.5 rounded-full font-extrabold text-base sm:text-lg shadow-sm cursor-pointer">
+                        ${word}
+                    </button>
+                    ${idx < row.words.length - 1 ? '<span class="text-amber-700/60 font-black select-none">–</span>' : ''}
+                `).join('');
+
+                rowDiv.innerHTML = `
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <div class="flex flex-wrap items-center gap-2 sm:gap-3 flex-1">
+                            <span class="w-9 h-9 rounded-2xl bg-[#b85324] text-white font-black text-base flex items-center justify-center shadow shrink-0 en-text">${row.id}</span>
+                            <div class="flex flex-wrap items-center gap-2">${wordsHtml}</div>
+                        </div>
+                        <button type="button" onclick="speakText('${row.words.join(', ')}', null, false, 'ex3-row-${row.id}')" class="audio-btn w-9 h-9 rounded-full bg-white text-orange-700 border border-orange-200 shadow-sm flex items-center justify-center shrink-0" title="استمع للكلمات الأربع">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+                    <div id="ex3-fb-${row.id}" dir="rtl" class="hidden text-xs font-extrabold px-3.5 py-1.5 rounded-xl"></div>
+                `;
+                container.appendChild(rowDiv);
+            });
+        }
+
+        function selectEx3Word(rowId, word) {
+            quizState.ex3[rowId] = word;
+            const row = ex3Data.find(r => r.id === rowId);
+            if (!row) return;
+
+            row.words.forEach(w => {
+                const btn = document.getElementById(`ex3-btn-${rowId}-${w}`);
+                if (!btn) return;
+                btn.classList.remove('odd-word-selected', 'odd-word-correct', 'odd-word-wrong');
+                if (w === word) btn.classList.add('odd-word-selected');
+            });
+
+            const fb = document.getElementById(`ex3-fb-${rowId}`);
+            if (fb) fb.classList.add('hidden');
+            speakText(word, null, false, `ex3-row-${rowId}`);
+            updateProgressUI();
+        }
+
+        // ==========================================
+        // 6. بناء واجهة السؤال الرابع (unscramble the words)
+        // ==========================================
+        function renderEx4() {
+            const grid = document.getElementById('ex4-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            ex4Data.forEach(item => {
+                ex4UsedTileIndices[item.id] = [];
+                const letters = item.scrambled.split('');
+
+                const card = document.createElement('div');
+                card.id = `ex4-card-${item.id}`;
+                card.className = 'quiz-card-enhanced sentence-box bg-white rounded-3xl border-2 border-teal-200 hover:border-teal-400 p-3.5 shadow-md flex flex-col justify-between gap-3 transition-all';
+
+                const tilesHtml = letters.map((ch, idx) => `
+                    <button type="button" id="ex4-tile-${item.id}-${idx}" onclick="clickEx4Tile(${item.id}, ${idx}, '${ch}')" class="letter-tile w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-100 hover:bg-amber-200 border border-amber-300 text-amber-950 font-black text-sm en-text flex items-center justify-center shadow-sm cursor-pointer">
+                        ${ch}
+                    </button>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="quiz-art-frame relative h-40 rounded-2xl overflow-hidden bg-white border-2 border-slate-200 shadow-inner flex items-center justify-center p-1.5">
+                        <span class="absolute top-2 left-2 z-10 w-8 h-8 rounded-xl ${item.badgeColor} text-white font-black text-base flex items-center justify-center shadow-md en-text border border-white/60">${item.id}</span>
+                        <button type="button" onclick="speakText('${item.hintEn.replace(/'/g, "\\'")}', null, false, 'ex4-card-${item.id}')" class="audio-btn absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-white/95 hover:bg-amber-50 text-amber-700 border border-amber-300 shadow flex items-center justify-center" title="استمع للتلميح الصوتي">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                        ${item.svg}
+                    </div>
+
+                    <div class="space-y-2">
+                        <div class="bg-amber-50/90 border border-amber-200 rounded-xl p-2 text-center">
+                            <div class="text-[11px] font-black text-orange-800 mb-1 tracking-widest en-text">${item.scrambled}</div>
+                            <div class="flex flex-wrap items-center justify-center gap-1">${tilesHtml}</div>
+                        </div>
+
+                        <div class="flex items-center gap-1.5">
+                            <input id="ex4-input-${item.id}" type="text" autocomplete="off" spellcheck="false" placeholder="Write word..." oninput="onEx4InputChange(${item.id}, this.value)" class="en-text flex-1 min-w-0 bg-slate-50 focus:bg-white border-2 border-slate-300 focus:border-teal-500 rounded-xl px-3 py-1.5 text-center font-extrabold text-base text-slate-900 focus:outline-none transition">
+                            <button type="button" onclick="clearEx4Item(${item.id})" class="audio-btn w-8 h-9 rounded-xl bg-slate-100 hover:bg-rose-100 text-slate-600 hover:text-rose-600 border border-slate-200 flex items-center justify-center shrink-0" title="مسح الإجابة">
+                                <i class="fa-solid fa-eraser text-xs"></i>
+                            </button>
+                            <button type="button" onclick="giveEx4Hint(${item.id})" class="audio-btn w-8 h-9 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 border border-amber-300 flex items-center justify-center shrink-0" title="تلميح بأول حرف">
+                                <i class="fa-solid fa-lightbulb text-xs"></i>
+                            </button>
+                        </div>
+
+                        <div id="ex4-fb-${item.id}" dir="rtl" class="hidden text-[11px] font-extrabold px-2.5 py-1.5 rounded-xl text-center"></div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function clickEx4Tile(itemId, tileIdx, ch) {
+            const tile = document.getElementById(`ex4-tile-${itemId}-${tileIdx}`);
+            const input = document.getElementById(`ex4-input-${itemId}`);
+            if (!tile || !input || tile.disabled) return;
+
+            tile.disabled = true;
+            tile.classList.add('letter-tile-used');
+            ex4UsedTileIndices[itemId].push(tileIdx);
+
+            input.value = (input.value || '') + ch;
+            onEx4InputChange(itemId, input.value, true);
+        }
+
+        function onEx4InputChange(itemId, val, fromTile = false) {
+            const clean = (val || '').trim();
+            quizState.ex4[itemId] = clean;
+
+            const card = document.getElementById(`ex4-card-${itemId}`);
+            const fb = document.getElementById(`ex4-fb-${itemId}`);
+            if (card) card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+            if (fb) fb.classList.add('hidden');
+
+            if (!fromTile) {
+                syncEx4TilesWithText(itemId, clean.toLowerCase());
+            }
+            updateProgressUI();
+        }
+
+        function syncEx4TilesWithText(itemId, text) {
+            const item = ex4Data.find(x => x.id === itemId);
+            if (!item) return;
+            const letters = item.scrambled.split('');
+            const used = [];
+            const remaining = text.split('');
+
+            letters.forEach((ch, idx) => {
+                const tile = document.getElementById(`ex4-tile-${itemId}-${idx}`);
+                if (!tile) return;
+                const pos = remaining.indexOf(ch);
+                if (pos !== -1) {
+                    remaining.splice(pos, 1);
+                    tile.disabled = true;
+                    tile.classList.add('letter-tile-used');
+                    used.push(idx);
+                } else {
+                    tile.disabled = false;
+                    tile.classList.remove('letter-tile-used');
+                }
+            });
+            ex4UsedTileIndices[itemId] = used;
+        }
+
+        function clearEx4Item(itemId) {
+            const input = document.getElementById(`ex4-input-${itemId}`);
+            if (input) input.value = '';
+            onEx4InputChange(itemId, '');
+        }
+
+        function giveEx4Hint(itemId) {
+            const item = ex4Data.find(x => x.id === itemId);
+            const input = document.getElementById(`ex4-input-${itemId}`);
+            if (!item || !input) return;
+
+            const current = (input.value || '').trim().toLowerCase();
+            let nextLen = 1;
+            if (item.answer.startsWith(current) && current.length < item.answer.length) {
+                nextLen = current.length + 1;
+            }
+            const hintPrefix = item.answer.slice(0, nextLen);
+            input.value = hintPrefix;
+            onEx4InputChange(itemId, hintPrefix);
+            showToast(`تلميح: تبدأ الكلمة بـ "${hintPrefix}" (${item.arMeaning})`);
+            speakText(item.hintEn, null, false, `ex4-card-${itemId}`);
+        }
+
+        // ==========================================
+        // 7. تحديث شريط نسبة الإنجاز المباشر (29 فقرة)
+        // ==========================================
+        function getCompletionStats() {
+            const ex1Done = ex1Data.filter(item => Boolean(quizState.ex1[item.id])).length;
+            const ex2Done = ex2Data.filter(item => Boolean(quizState.ex2[item.id])).length;
+            const ex3Done = ex3Data.filter(row => Boolean(quizState.ex3[row.id])).length;
+            const ex4Done = ex4Data.filter(item => (quizState.ex4[item.id] || '').trim().length > 0).length;
+
+            const totalDone = ex1Done + ex2Done + ex3Done + ex4Done;
+            const totalItems = ex1Data.length + ex2Data.length + ex3Data.length + ex4Data.length; // 29
+            const pct = Math.round((totalDone / totalItems) * 100);
+            return { ex1Done, ex2Done, ex3Done, ex4Done, totalDone, totalItems, pct };
+        }
+
+        function updateProgressUI() {
+            const stats = getCompletionStats();
+
+            const bar = document.getElementById('top-progress-bar');
+            const topPct = document.getElementById('top-progress-pct-label');
+            const headerPct = document.getElementById('header-progress-pct');
+            const countText = document.getElementById('progress-count-text');
+            const heroAnswered = document.getElementById('hero-answered-count');
+
+            if (bar) bar.style.width = `${stats.pct}%`;
+            if (topPct) topPct.textContent = `${stats.pct}%`;
+            if (headerPct) headerPct.textContent = `${stats.pct}%`;
+            if (countText) countText.textContent = `${stats.totalDone} / ${stats.totalItems}`;
+            if (heroAnswered) heroAnswered.textContent = stats.totalDone;
+
+            const b1 = document.getElementById('ex1-progress-badge');
+            const b2 = document.getElementById('ex2-progress-badge');
+            const b3 = document.getElementById('ex3-progress-badge');
+            const b4 = document.getElementById('ex4-progress-badge');
+            if (b1) b1.textContent = `${stats.ex1Done}/10`;
+            if (b2) b2.textContent = `${stats.ex2Done}/8`;
+            if (b3) b3.textContent = `${stats.ex3Done}/5`;
+            if (b4) b4.textContent = `${stats.ex4Done}/6`;
+
+            const warn = document.getElementById('unanswered-warning');
+            if (warn && stats.totalDone === stats.totalItems) {
+                warn.classList.add('hidden');
+            }
+        }
+
+        // ==========================================
+        // 8. تصحيح الأقسام الأربعة والتغذية الراجعة
+        // ==========================================
+        function checkEx1(silent = false) {
+            let score = 0;
+            ex1Data.forEach(item => {
+                const chosenKey = quizState.ex1[item.id];
+                const fb = document.getElementById(`ex1-fb-${item.id}`);
+                const card = document.getElementById(`ex1-card-${item.id}`);
+                const correctOpt = item.options.find(o => o.key === item.answer);
+                if (!fb || !card) return;
+
+                card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+                item.options.forEach(o => {
+                    const btn = document.getElementById(`ex1-opt-${item.id}-${o.key}`);
+                    if (!btn) return;
+                    btn.classList.remove('border-emerald-500', 'bg-emerald-50', 'border-rose-500', 'bg-rose-50');
+                    if (o.key === item.answer) btn.classList.add('border-emerald-500', 'bg-emerald-50');
+                    if (o.key === chosenKey && chosenKey !== item.answer) btn.classList.add('border-rose-500', 'bg-rose-50');
+                });
+
+                fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-900');
+                if (chosenKey === item.answer) {
+                    score++;
+                    card.classList.add('border-emerald-500', 'bg-emerald-50/40');
+                    fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check"></i> إجابة صحيحة! ${item.reasonAr}`;
+                } else if (!chosenKey) {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40');
+                    fb.classList.add('bg-amber-100', 'text-amber-900');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> لم تختر إجابة. الصحيح: (${item.answer}) <span class="en-text font-black">${correctOpt ? correctOpt.text : ''}</span>`;
+                } else {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40', 'shake');
+                    fb.classList.add('bg-rose-100', 'text-rose-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> الصحيح هو (${item.answer}) <span class="en-text font-black">${correctOpt ? correctOpt.text : ''}</span> — ${item.reasonAr}`;
+                }
+            });
+
+            const secFb = document.getElementById('ex1-section-feedback');
+            if (secFb) {
+                secFb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-amber-100', 'text-amber-900', 'border-amber-300');
+                if (score === ex1Data.length) {
+                    secFb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                    secFb.textContent = `ممتاز جداً! العلامة الكاملة في السؤال الأول (${score}/${ex1Data.length}).`;
+                    if (!silent) speakText('Awesome! All ten answers in exercise one are correct!');
+                } else {
+                    secFb.classList.add('bg-amber-100', 'text-amber-900', 'border', 'border-amber-300');
+                    secFb.textContent = `درجتك في السؤال الأول: ${score} من ${ex1Data.length}. راجع التغذية الراجعة أسفل كل جملة!`;
+                    if (!silent) speakText(`You scored ${score} out of 10 in exercise one.`);
+                }
+            }
+            return score;
+        }
+
+        function checkEx2(silent = false) {
+            let score = 0;
+            ex2Data.forEach(item => {
+                const placed = quizState.ex2[item.id] || '';
+                const card = document.getElementById(`ex2-card-${item.id}`);
+                const zone = document.getElementById(`ex2-drop-${item.id}`);
+                const fb = document.getElementById(`ex2-fb-${item.id}`);
+                if (!card || !zone || !fb) return;
+
+                card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+                zone.classList.remove('drop-zone-correct', 'drop-zone-wrong');
+                fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-900');
+
+                if (placed === item.answer) {
+                    score++;
+                    card.classList.add('border-emerald-500', 'bg-emerald-50/40');
+                    zone.classList.add('drop-zone-correct');
+                    fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check"></i> أحسنت! ${item.reasonAr}`;
+                } else if (!placed) {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40');
+                    zone.classList.add('drop-zone-wrong');
+                    fb.classList.add('bg-amber-100', 'text-amber-900');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> الفراغ فارغ! الكلمة الصحيحة هي: <span class="en-text font-black">${item.answer}</span> — ${item.reasonAr}`;
+                } else {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40', 'shake');
+                    zone.classList.add('drop-zone-wrong');
+                    fb.classList.add('bg-rose-100', 'text-rose-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> الصحيح هو <span class="en-text font-black">${item.answer}</span> — ${item.reasonAr}`;
+                }
+            });
+
+            const secFb = document.getElementById('ex2-section-feedback');
+            if (secFb) {
+                secFb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-amber-100', 'text-amber-900', 'border-amber-300');
+                if (score === ex2Data.length) {
+                    secFb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                    secFb.textContent = `رائع جداً! العلامة الكاملة في سؤال السحب والإفلات (${score}/${ex2Data.length}).`;
+                    if (!silent) speakText('Fantastic! All eight sentences in exercise two are correct!');
+                } else {
+                    secFb.classList.add('bg-amber-100', 'text-amber-900', 'border', 'border-amber-300');
+                    secFb.textContent = `درجتك في السؤال الثاني: ${score} من ${ex2Data.length}. يمكنك النقر على أي كلمة لإرجاعها وتعديل إجابتك!`;
+                    if (!silent) speakText(`You got ${score} out of 8 in exercise two.`);
+                }
+            }
+            return score;
+        }
+
+        function checkEx3(silent = false) {
+            let score = 0;
+            ex3Data.forEach(row => {
+                const chosen = quizState.ex3[row.id];
+                const fb = document.getElementById(`ex3-fb-${row.id}`);
+                if (!fb) return;
+
+                row.words.forEach(w => {
+                    const btn = document.getElementById(`ex3-btn-${row.id}-${w}`);
+                    if (!btn) return;
+                    btn.classList.remove('odd-word-correct', 'odd-word-wrong');
+                    if (w === row.answer) btn.classList.add('odd-word-correct');
+                    if (w === chosen && chosen !== row.answer) btn.classList.add('odd-word-wrong');
+                });
+
+                fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-900');
+                if (chosen === row.answer) {
+                    score++;
+                    fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check"></i> إجابة صحيحة! ${row.reasonAr}`;
+                } else if (!chosen) {
+                    fb.classList.add('bg-amber-100', 'text-amber-900');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> لم تختر كلمة. الكلمة المختلفة هي: <span class="en-text font-black">${row.answer}</span> — ${row.reasonAr}`;
+                } else {
+                    fb.classList.add('bg-rose-100', 'text-rose-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> الكلمة المختلفة هي <span class="en-text font-black">${row.answer}</span> — ${row.reasonAr}`;
+                }
+            });
+
+            const secFb = document.getElementById('ex3-section-feedback');
+            if (secFb) {
+                secFb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-amber-100', 'text-amber-900', 'border-amber-300');
+                if (score === ex3Data.length) {
+                    secFb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                    secFb.textContent = `ممتاز! العلامة الكاملة في السؤال الثالث (${score}/${ex3Data.length}).`;
+                    if (!silent) speakText('Great job! All five odd words are correct!');
+                } else {
+                    secFb.classList.add('bg-amber-100', 'text-amber-900', 'border', 'border-amber-300');
+                    secFb.textContent = `درجتك في السؤال الثالث: ${score} من ${ex3Data.length}. راجع التفسير أسفل كل سطر!`;
+                    if (!silent) speakText(`You got ${score} out of 5 in exercise three.`);
+                }
+            }
+            return score;
+        }
+
+        function checkEx4(silent = false) {
+            let score = 0;
+            ex4Data.forEach(item => {
+                const userAns = (quizState.ex4[item.id] || '').trim().toLowerCase();
+                const card = document.getElementById(`ex4-card-${item.id}`);
+                const fb = document.getElementById(`ex4-fb-${item.id}`);
+                if (!card || !fb) return;
+
+                card.classList.remove('border-emerald-500', 'bg-emerald-50/40', 'border-rose-500', 'bg-rose-50/40', 'shake');
+                fb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-rose-100', 'text-rose-800', 'bg-amber-100', 'text-amber-900');
+
+                if (userAns === item.answer) {
+                    score++;
+                    card.classList.add('border-emerald-500', 'bg-emerald-50/40');
+                    fb.classList.add('bg-emerald-100', 'text-emerald-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-check"></i> أحسنت! (${item.arMeaning})`;
+                } else if (!userAns) {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40');
+                    fb.classList.add('bg-amber-100', 'text-amber-900');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> لم تُجب! الصحيح: <span class="en-text font-black">${item.answer}</span>`;
+                } else {
+                    card.classList.add('border-rose-500', 'bg-rose-50/40', 'shake');
+                    fb.classList.add('bg-rose-100', 'text-rose-800');
+                    fb.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> الصحيح: <span class="en-text font-black">${item.answer}</span> (${item.arMeaning})`;
+                }
+            });
+
+            const secFb = document.getElementById('ex4-section-feedback');
+            if (secFb) {
+                secFb.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'border-emerald-300', 'bg-amber-100', 'text-amber-900', 'border-amber-300');
+                if (score === ex4Data.length) {
+                    secFb.classList.add('bg-emerald-100', 'text-emerald-800', 'border', 'border-emerald-300');
+                    secFb.textContent = `مذهل! العلامة الكاملة في سؤال ترتيب الحروف (${score}/${ex4Data.length}).`;
+                    if (!silent) speakText('Wonderful! All six words in exercise four are spelled correctly!');
+                } else {
+                    secFb.classList.add('bg-amber-100', 'text-amber-900', 'border', 'border-amber-300');
+                    secFb.textContent = `درجتك في السؤال الرابع: ${score} من ${ex4Data.length}. راجع التهجئة الصحيحة أسفل كل صورة!`;
+                    if (!silent) speakText(`You got ${score} out of 6 in exercise four.`);
+                }
+            }
+            return score;
+        }
+
+        function getSkillLevelLabel(pct) {
+            if (pct >= 90) return 'متقن متفوق';
+            if (pct >= 75) return 'متقدم';
+            if (pct >= 60) return 'متوسط';
+            return 'يحتاج دعماً';
+        }
+
+        // ==========================================
+        // 9. إنهاء الاختبار وإصدار التقرير الشامل لمستوى الطالب
+        // ==========================================
+        function submitFullQuiz() {
+            const completion = getCompletionStats();
+            const warn = document.getElementById('unanswered-warning');
+            if (completion.totalDone < completion.totalItems && warn) {
+                const rem = completion.totalItems - completion.totalDone;
+                warn.textContent = `ملاحظة: هناك ${rem} فقرة لم تُجب عنها، وقد تم احتسابها في التقرير النهائي.`;
+                warn.classList.remove('hidden');
+            } else if (warn) {
+                warn.classList.add('hidden');
+            }
+
+            const s1 = checkEx1(true);
+            const s2 = checkEx2(true);
+            const s3 = checkEx3(true);
+            const s4 = checkEx4(true);
+
+            const totalScore = s1 + s2 + s3 + s4;
+            const totalPossible = completion.totalItems; // 29
+            const pct = Math.round((totalScore / totalPossible) * 100);
+
+            const heroBadge = document.getElementById('hero-score-badge');
+            if (heroBadge) heroBadge.textContent = `${pct}%`;
+
+            const reportCard = document.getElementById('final-report-card');
+            if (reportCard) {
+                reportCard.classList.remove('hidden');
+                reportCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+
+            // بيانات الطالب ومستوى الإتقان
+            const studentName = (document.getElementById('student-name-input')?.value || '').trim() || 'طالب متميز';
+            const studentClass = (document.getElementById('student-class-input')?.value || '').trim() || 'غير محدد';
+            const nowStr = new Date().toLocaleString('ar-SA', { dateStyle: 'medium', timeStyle: 'short' });
+
+            let masteryLevel = 'مبتدئ (يحتاج تدريباً إضافياً)';
+            let ratingText = 'تقدير: يحتاج مراجعة';
+            let ratingClasses = 'bg-rose-100 text-rose-800 border-rose-300';
+            let voiceMsg = `Good effort! You scored ${totalScore} out of ${totalPossible}, which is ${pct} percent. Review the vocabulary list and try again!`;
+
+            if (pct >= 90) {
+                masteryLevel = 'متفوق / متقن للمهارات';
+                ratingText = 'تقدير: ممتاز متفوق 🌟';
+                ratingClasses = 'bg-emerald-100 text-emerald-800 border-emerald-300';
+                voiceMsg = `Congratulations! Outstanding work! You scored ${totalScore} out of ${totalPossible}, ${pct} percent!`;
+                launchConfetti();
+            } else if (pct >= 80) {
+                masteryLevel = 'متقدم (أداء قوي جداً)';
+                ratingText = 'تقدير: جيد جداً 👏';
+                ratingClasses = 'bg-teal-100 text-teal-800 border-teal-300';
+                voiceMsg = `Very good job! You scored ${totalScore} out of ${totalPossible}, ${pct} percent!`;
+                launchConfetti();
+            } else if (pct >= 65) {
+                masteryLevel = 'متوسط (في المسار الصحيح)';
+                ratingText = 'تقدير: جيد 👍';
+                ratingClasses = 'bg-amber-100 text-amber-900 border-amber-300';
+            } else if (pct >= 50) {
+                masteryLevel = 'مقبول (يحتاج تعزيزاً)';
+                ratingText = 'تقدير: مقبول';
+                ratingClasses = 'bg-orange-100 text-orange-900 border-orange-300';
+            }
+
+            document.getElementById('rep-student-name').textContent = studentName;
+            document.getElementById('rep-student-class').textContent = studentClass;
+            document.getElementById('rep-mastery-level').textContent = masteryLevel;
+            document.getElementById('rep-timestamp').textContent = nowStr;
+
+            // تحديث الدائرة المئوية
+            const ring = document.getElementById('score-ring-circle');
+            if (ring) {
+                const offset = 314 - Math.round((314 * pct) / 100);
+                ring.style.strokeDashoffset = offset;
+                ring.style.stroke = pct >= 85 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+            }
+            document.getElementById('final-pct-text').textContent = `${pct}%`;
+            document.getElementById('final-marks-fraction').textContent = `${totalScore} / ${totalPossible}`;
+
+            const ratingEl = document.getElementById('final-rating-badge');
+            if (ratingEl) {
+                ratingEl.className = `inline-block px-4 py-1 rounded-full text-xs sm:text-sm font-black border ${ratingClasses}`;
+                ratingEl.textContent = ratingText;
+            }
+            document.getElementById('final-completion-pill').textContent = `نسبة الإنجاز: ${completion.pct}% (${completion.totalDone}/${completion.totalItems})`;
+            document.getElementById('final-student-greeting').textContent = `أحسنت يا ${studentName}!`;
+            document.getElementById('final-summary-msg').textContent = `مستواك العام: «${masteryLevel}» — حصلت على ${totalScore} من ${totalPossible} درجة بنسبة مئوية ${pct}%، وبنسبة إنجاز ${completion.pct}%.`;
+
+            // تحليل الأداء حسب الأسئلة الأربعة
+            const secStats = [
+                { key: 'ex1', label: 'الاختيار من متعدد (معاني المفردات في الجمل)', score: s1, total: ex1Data.length },
+                { key: 'ex2', label: 'السحب والإفلات (توظيف بنك الكلمات)', score: s2, total: ex2Data.length },
+                { key: 'ex3', label: 'تصنيف المفردات وتمييز الكلمة المختلفة', score: s3, total: ex3Data.length },
+                { key: 'ex4', label: 'التهجئة وترتيب الحروف (Unscramble)', score: s4, total: ex4Data.length }
+            ];
+
+            const strengths = [];
+            const needsSupport = [];
+
+            secStats.forEach(st => {
+                const sp = Math.round((st.score / st.total) * 100);
+                document.getElementById(`rep-${st.key}-score`).textContent = `${st.score}/${st.total}`;
+                document.getElementById(`rep-${st.key}-pct`).textContent = `${sp}%`;
+                document.getElementById(`rep-${st.key}-bar`).style.width = `${sp}%`;
+                document.getElementById(`rep-${st.key}-lvl`).textContent = getSkillLevelLabel(sp);
+                if (sp >= 80) strengths.push(st.label);
+                else needsSupport.push(st.label);
+            });
+
+            // التوصية التربوية المفصلة لمستوى الطالب
+            const adviceBox = document.getElementById('pedagogical-advice-box');
+            if (adviceBox) {
+                const strengthHtml = strengths.length > 0
+                    ? `<div><i class="fa-solid fa-star text-amber-500 ml-1"></i> <strong>نقاط القوة لدى الطالب:</strong> إتقان واضح في ${strengths.join('، ')}.</div>`
+                    : `<div><i class="fa-solid fa-seedling text-emerald-600 ml-1"></i> <strong>بداية مشجعة:</strong> الاستمرار في الاستماع للمفردات وتكرار التدريب سيرفع مستواك سريعاً.</div>`;
+
+                const supportHtml = needsSupport.length > 0
+                    ? `<div><i class="fa-solid fa-bullseye text-rose-500 ml-1"></i> <strong>مهارات يُنصح بتعزيزها:</strong> مراجعة ${needsSupport.join('، ')} من بطاقات مفردات الوحدة الثانية ثم إعادة المحاولة.</div>`
+                    : `<div><i class="fa-solid fa-crown text-emerald-600 ml-1"></i> <strong>توصية المعلم:</strong> أداء متميز وشامل في جميع مهارات مفردات الوحدة الثانية! استمر في هذا التفوق.</div>`;
+
+                adviceBox.innerHTML = strengthHtml + supportHtml;
+            }
+
+            // قائمة التغذية الراجعة التفصيلية لجميع الفقرات الـ 29
+            const listEl = document.getElementById('detailed-feedback-list');
+            if (listEl) {
+                const rows = [];
+
+                ex1Data.forEach(item => {
+                    const u = quizState.ex1[item.id] || '';
+                    const ok = u === item.answer;
+                    const opt = item.options.find(o => o.key === item.answer);
+                    rows.push(`
+                        <div class="p-2.5 rounded-xl border ${ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'} space-y-0.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <span>${ok ? '✅' : '❌'} س1 (${item.id}): <span class="en-text font-black">${opt ? opt.text : ''}</span></span>
+                                <span class="en-text text-[11px] opacity-80">${u ? `(${u})` : 'لم تُجب'}</span>
+                            </div>
+                            <div class="text-[11px] opacity-85">${item.reasonAr}</div>
+                        </div>
+                    `);
+                });
+
+                ex2Data.forEach(item => {
+                    const u = quizState.ex2[item.id] || '';
+                    const ok = u === item.answer;
+                    rows.push(`
+                        <div class="p-2.5 rounded-xl border ${ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'} space-y-0.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <span>${ok ? '✅' : '❌'} س2 (${item.id}): <span class="en-text font-black">${item.answer}</span></span>
+                                <span class="en-text text-[11px] opacity-80">${u || 'فارغ'}</span>
+                            </div>
+                            <div class="text-[11px] opacity-85">${item.reasonAr}</div>
+                        </div>
+                    `);
+                });
+
+                ex3Data.forEach(row => {
+                    const u = quizState.ex3[row.id] || '';
+                    const ok = u === row.answer;
+                    rows.push(`
+                        <div class="p-2.5 rounded-xl border ${ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'} space-y-0.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <span>${ok ? '✅' : '❌'} س3 (${row.id}): المختلف <span class="en-text font-black">${row.answer}</span></span>
+                                <span class="en-text text-[11px] opacity-80">${u || 'لم تُجب'}</span>
+                            </div>
+                            <div class="text-[11px] opacity-85">${row.reasonAr}</div>
+                        </div>
+                    `);
+                });
+
+                ex4Data.forEach(item => {
+                    const u = (quizState.ex4[item.id] || '').trim().toLowerCase();
+                    const ok = u === item.answer;
+                    rows.push(`
+                        <div class="p-2.5 rounded-xl border ${ok ? 'bg-emerald-50 border-emerald-200 text-emerald-900' : 'bg-rose-50 border-rose-200 text-rose-900'} space-y-0.5">
+                            <div class="flex items-center justify-between gap-2">
+                                <span>${ok ? '✅' : '❌'} س4 (${item.id}): <span class="en-text font-black">${item.answer}</span> (${item.arMeaning})</span>
+                                <span class="en-text text-[11px] opacity-80">${u || 'لم تُجب'}</span>
+                            </div>
+                        </div>
+                    `);
+                });
+
+                listEl.innerHTML = rows.join('');
+            }
+
+            // نص التقرير للنسخ السريع
+            lastReportPlainText = [
+                `تقرير مستوى الطالب — اختبار Vocabulary Practice (Unit 2)`,
+                `الطالب: ${studentName} | الصف: ${studentClass}`,
+                `النتيجة النهائية: ${totalScore} / ${totalPossible} (${pct}%)`,
+                `مستوى الإتقان: ${masteryLevel} | ${ratingText}`,
+                `نسبة الإنجاز: ${completion.pct}% (${completion.totalDone}/${completion.totalItems})`,
+                `س1 (اختر): ${s1}/10 | س2 (السحب والإفلات): ${s2}/8 | س3 (المختلف): ${s3}/5 | س4 (ترتيب الحروف): ${s4}/6`,
+                `التاريخ: ${nowStr}`
+            ].join('\n');
+
+            showToast(`تم التصحيح! نتيجتك ${totalScore}/${totalPossible} (${pct}%)`);
+            speakText(voiceMsg);
+        }
+
+        function copyReportSummary() {
+            if (!lastReportPlainText) return;
+            try {
+                const ta = document.createElement('textarea');
+                ta.value = lastReportPlainText;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                ta.remove();
+                showToast('تم نسخ تقرير مستوى الطالب إلى الحافظة!');
+            } catch (e) {
+                showToast('تعذّر النسخ التلقائي، يمكنك استخدام زر الطباعة.');
+            }
+        }
+
+        function showAllModelAnswers() {
+            // Ex 1
+            ex1Data.forEach(item => {
+                quizState.ex1[item.id] = item.answer;
+                const opt = item.options.find(o => o.key === item.answer);
+                const blank = document.getElementById(`ex1-blank-${item.id}`);
+                if (blank && opt) blank.textContent = opt.text;
+            });
+            // Ex 2
+            ex2Data.forEach(item => {
+                quizState.ex2[item.id] = item.answer;
+                refreshEx2SingleZone(item.id);
+            });
+            selectedDragWord = null;
+            renderWordBank();
+            // Ex 3
+            ex3Data.forEach(row => {
+                quizState.ex3[row.id] = row.answer;
+            });
+            // Ex 4
+            ex4Data.forEach(item => {
+                quizState.ex4[item.id] = item.answer;
+                const input = document.getElementById(`ex4-input-${item.id}`);
+                if (input) input.value = item.answer;
+                syncEx4TilesWithText(item.id, item.answer);
+            });
+
+            updateProgressUI();
+            checkEx1(true);
+            checkEx2(true);
+            checkEx3(true);
+            checkEx4(true);
+            showToast('تم عرض جميع الإجابات النموذجية بنجاح!');
+            speakText('Here are all the model answers for Vocabulary Practice.');
+        }
+
+        function resetEntireQuiz() {
+            stopAudio();
+            quizState.ex1 = {};
+            quizState.ex2 = {};
+            quizState.ex3 = {};
+            quizState.ex4 = {};
+            selectedDragWord = null;
+            activeDraggingWord = null;
+            lastReportPlainText = '';
+
+            renderEx1();
+            renderEx2();
+            renderEx3();
+            renderEx4();
+
+            [
+                'ex1-section-feedback',
+                'ex2-section-feedback',
+                'ex3-section-feedback',
+                'ex4-section-feedback',
+                'unanswered-warning',
+                'final-report-card'
+            ].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.classList.add('hidden');
+            });
+
+            const heroBadge = document.getElementById('hero-score-badge');
+            if (heroBadge) heroBadge.textContent = '--%';
+
+            updateProgressUI();
+            showToast('تمت إعادة الاختبار بالكامل! يمكنك البدء من جديد الآن.');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function launchConfetti() {
+            const colors = ['#f59e0b', '#10b981', '#0ea5e9', '#f43f5e', '#84cc16', '#eab308'];
+            for (let i = 0; i < 45; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece rounded-sm';
+                piece.style.left = `${Math.random() * 100}vw`;
+                piece.style.width = `${7 + Math.random() * 7}px`;
+                piece.style.height = `${10 + Math.random() * 8}px`;
+                piece.style.backgroundColor = colors[i % colors.length];
+                piece.style.animationDuration = `${2.2 + Math.random() * 2}s`;
+                piece.style.animationDelay = `${Math.random() * 0.5}s`;
+                document.body.appendChild(piece);
+                setTimeout(() => piece.remove(), 4800);
+            }
+        }
+
+        // ==========================================
+        // 10. نظام الصوت التعليمي الهادئ للمعلمة والمعلم (مطابق 100%)
+        // ==========================================
+        let preferMaleTeacher = false;
+        let isSlowTrainingMode = false;
+        let isSequencePlaying = false;
+        let activeTimeouts = [];
+        let speechSessionCounter = 0;
+
+        function getCurrentSpeechRate() {
+            return isSlowTrainingMode ? 0.65 : 0.76;
+        }
+
+        function showLiveReadingToast(txt) {
+            const toast = document.getElementById('liveReadingToast');
+            const wordEl = document.getElementById('toastWord');
+            const rateEl = document.getElementById('toastRateLabel');
+            if (rateEl) rateEl.innerText = `Calm Educational Voice (${getCurrentSpeechRate()}x):`;
+            if (wordEl) wordEl.innerText = txt;
+            if (toast) {
+                toast.classList.remove('opacity-0', 'translate-y-8');
+                toast.classList.add('opacity-100', 'translate-y-0');
+            }
+        }
+
+        function hideLiveReadingToast() {
+            const toast = document.getElementById('liveReadingToast');
+            if (toast) {
+                toast.classList.add('opacity-0', 'translate-y-8');
+                toast.classList.remove('opacity-100', 'translate-y-0');
+            }
+        }
+
+        function toggleSpeechSpeed() {
+            isSlowTrainingMode = !isSlowTrainingMode;
+            const speedLabel = document.getElementById('speed-label');
+            if (speedLabel) {
+                speedLabel.textContent = isSlowTrainingMode ? 'بطيء جداً (0.65x)' : 'هادئ (0.76x)';
+            }
+            showToast(isSlowTrainingMode ? 'تم تفعيل النطق البطيء جداً للتدريب!' : 'تم تفعيل الصوت التعليمي الهادئ (0.76x)!');
+        }
+
+        function changeTeacherVoice(voiceMode) {
+            preferMaleTeacher = (voiceMode === 'calm-male');
+            stopAudio();
+            speakText('Hello! Good luck with your Unit 2 Vocabulary Practice quiz.');
+            showToast(preferMaleTeacher ? 'تم تفعيل صوت المعلم الهادئ' : 'تم تفعيل صوت المعلمة الهادئة');
+        }
+
+        function findCalmEducationalVoice(voicesList, preferMale = false) {
+            if (!voicesList || voicesList.length === 0) return null;
+            const enVoices = voicesList.filter(v => v.lang && v.lang.toLowerCase().startsWith('en'));
+            const pool = enVoices.length > 0 ? enVoices : voicesList;
+
+            const femalePriority = [
+                'emma online (natural)',
+                'ava online (natural)',
+                'jenny online (natural)',
+                'aria online (natural)',
+                'michelle online (natural)',
+                'ana online (natural)',
+                'clara online (natural)',
+                'sonia online (natural)',
+                'google uk english female',
+                'google us english',
+                'samantha',
+                'karen',
+                'moira',
+                'tessa'
+            ];
+
+            const malePriority = [
+                'william multilingual',
+                'william online (natural)',
+                'andrew online (natural)',
+                'liam online (natural)',
+                'ryan online (natural)',
+                'daniel',
+                'david',
+                'mark'
+            ];
+
+            const listToCheck = preferMale ? [...malePriority, ...femalePriority] : [...femalePriority, ...malePriority];
+            for (const key of listToCheck) {
+                const match = pool.find(v => v.name.toLowerCase().includes(key));
+                if (match) return match;
+            }
+            return pool[0] || null;
+        }
+
+        function setSpeakingUI(isSpeaking) {
+            const pulse = document.getElementById('teacher-pulse');
+            const stopBtn = document.getElementById('stop-audio-btn');
+            if (isSpeaking) {
+                if (pulse) pulse.classList.remove('hidden');
+                if (stopBtn) stopBtn.classList.remove('hidden');
+            } else {
+                if (pulse) pulse.classList.add('hidden');
+                if (stopBtn) stopBtn.classList.add('hidden');
+            }
+        }
+
+        function clearHighlights() {
+            document.querySelectorAll('.active-reading-box').forEach(el => el.classList.remove('active-reading-box'));
+            document.querySelectorAll('.active-reading-text').forEach(el => el.classList.remove('active-reading-text'));
+        }
+
+        function highlightCardById(cardId) {
+            clearHighlights();
+            if (!cardId) return;
+            const el = document.getElementById(cardId);
+            if (!el) return;
+            el.classList.add('active-reading-box');
+            const innerText = el.querySelector('.sentence-text');
+            if (innerText) innerText.classList.add('active-reading-text');
+            el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function stopAudio() {
+            isSequencePlaying = false;
+            speechSessionCounter++;
+            activeTimeouts.forEach(t => {
+                clearTimeout(t);
+                clearInterval(t);
+            });
+            activeTimeouts = [];
+
+            if ('speechSynthesis' in window) {
+                try {
+                    window.speechSynthesis.cancel();
+                } catch (e) {}
+            }
+            clearHighlights();
+            hideLiveReadingToast();
+            setSpeakingUI(false);
+        }
+
+        function speakText(text, btnElement = null, keepSequenceState = false, highlightCardId = null) {
+            return new Promise((resolve) => {
+                try {
+                    if (!keepSequenceState) {
+                        stopAudio();
+                    }
+
+                    const mySession = speechSessionCounter;
+                    const rate = getCurrentSpeechRate();
+                    const pitch = preferMaleTeacher ? 0.94 : 1.04;
+
+                    if (highlightCardId) {
+                        highlightCardById(highlightCardId);
+                    }
+                    showLiveReadingToast(text);
+                    setSpeakingUI(true);
+
+                    let finished = false;
+                    let safetyTimer = null;
+                    const finishOnce = () => {
+                        if (finished) return;
+                        finished = true;
+                        if (safetyTimer) clearTimeout(safetyTimer);
+                        if (!keepSequenceState && mySession === speechSessionCounter) {
+                            clearHighlights();
+                            hideLiveReadingToast();
+                            setSpeakingUI(false);
+                        }
+                        resolve();
+                    };
+
+                    const words = text.trim().split(/\s+/).filter(Boolean).length;
+                    const safetyMs = Math.max(2200, Math.round((words / rate) * 750) + 1800);
+                    safetyTimer = setTimeout(finishOnce, safetyMs);
+                    activeTimeouts.push(safetyTimer);
+
+                    if (!('speechSynthesis' in window)) {
+                        return;
+                    }
+
+                    const startTimer = setTimeout(() => {
+                        if (mySession !== speechSessionCounter || finished) return;
+                        try {
+                            if (window.speechSynthesis.paused) {
+                                window.speechSynthesis.resume();
+                            }
+                            const voices = window.speechSynthesis.getVoices();
+                            const chosenVoice = findCalmEducationalVoice(voices, preferMaleTeacher);
+
+                            const utterance = new SpeechSynthesisUtterance(text);
+                            window.activeUtteranceRef = utterance;
+                            if (chosenVoice) {
+                                utterance.voice = chosenVoice;
+                                utterance.lang = chosenVoice.lang || 'en-US';
+                            } else {
+                                utterance.lang = 'en-US';
+                            }
+                            utterance.rate = rate;
+                            utterance.pitch = pitch;
+                            utterance.volume = 1.0;
+
+                            utterance.onend = finishOnce;
+                            utterance.onerror = (err) => {
+                                if (err && (err.error === 'canceled' || err.error === 'interrupted')) return;
+                                finishOnce();
+                            };
+
+                            window.speechSynthesis.speak(utterance);
+                        } catch (e) {
+                            finishOnce();
+                        }
+                    }, 50);
+                    activeTimeouts.push(startTimer);
+                } catch (err) {
+                    resolve();
+                }
+            });
+        }
+
+        let toastTimer = null;
+        function showToast(message) {
+            const toast = document.getElementById('toast-message');
+            const toastText = document.getElementById('toast-text');
+            if (!toast || !toastText) return;
+
+            toastText.textContent = message;
+            toast.classList.remove('hidden');
+
+            if (toastTimer) clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3500);
+        }
+
+        window.onload = function () {
+            renderEx1();
+            renderEx2();
+            renderEx3();
+            renderEx4();
+            updateProgressUI();
+
+            if ('speechSynthesis' in window) {
+                try {
+                    window.speechSynthesis.getVoices();
+                    window.speechSynthesis.onvoiceschanged = () => {
+                        window.speechSynthesis.getVoices();
+                    };
+                } catch (e) {}
+            }
+        };
+    </script>
+</body>
+</html>
